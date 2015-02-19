@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jessica, Sam, Jimmy" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Info</title>
+  </head>
+  <body>
+    <?php include( 'nav.html' ); ?>
+    <section class="maincontent">
+      <h1>What is a 3D printer?</h1>
+      <p>
+        A 3D printer is a machine that can print three-dimensional objects 
+        out of hard colored plastic. In order to print, a design must 
+        first be made either using <a>software</a> that can be found for 
+        free online or by making use of an <a>object scanner</a>.
+      </p>
+      <h1>Using Truman's 3D printer</h1>
+      <p>
+        Students can print any design they have using this website. First,
+        upload your design to the <a>Makerbot Thingiverse</a> then go to 
+        the <a>print page</a> and fill out a request form. Your project
+        will be added to the queue, and you will recieve an email when 
+        it is ready to be picked up from the Magruder office. 3D printed 
+        objects are $0.10 per gram to be payed on pickup.
+      </p>
+      <h1>Things to know before printing</h1>
+      <p>
+        <ul>
+          <li>
+            The max size for an object is 10.0 L X 10.0 W X 12.5 H cm
+          </li>
+          <li>
+            3D printed objects must be all one color (no multicolored objects)
+          </li>
+          <li>
+            <em>Printing takes time</em>. Expect 30 minutes per gram.
+          </li>
+        </ul>
+      </p>
+      
+    </section>
+  </body>
+</html>

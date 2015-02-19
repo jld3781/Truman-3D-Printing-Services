@@ -1,0 +1,32 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  font-size: 14px;
+  font-family: "Open Sans", "Arial", sans-serif;
+}
+
+nav {
+  font-size: 14px;
+}
+
+nav ul {
+  padding: 10px 0px;
+  margin: 0px;
+}
+
+nav ul li{
+  display: inline;
+  padding: 0px 20px;
+}
+
+nav ul li a{
+  text-decoration: none;
+}
+
+fieldset{
+  border: 0px;
+}
+
+label{
+  display: block;
+}
