@@ -5,8 +5,14 @@ body {
   font-family: "Open Sans", "Arial", sans-serif;
 }
 
+header {
+background-color: #5b187e;
+color: white;
+}
+
 nav {
   font-size: 14px;
+  background-color: #5b187e;
 }
 
 nav ul {
@@ -21,6 +27,7 @@ nav ul li{
 
 nav ul li a{
   text-decoration: none;
+  color: white;
 }
 
 fieldset{
