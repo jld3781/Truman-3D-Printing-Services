@@ -3,19 +3,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-define( 'DEFINITION_FILENAME', 'admin.txt' );
+define( 'DEFINITION_FILENAME', 'printJobs.txt' );
 
 /* Read a file of text, strip newlines
 return the file as an array of lines */
 function get_a_file( $filename )
 {
   $lines = file( $filename, FILE_IGNORE_NEW_LINES );
+  array_shift($lines);
   return $lines;
 }
 
 function out_to_file( $filename , $lines )
 {
-  asort($lines);
   file_put_contents(DEFINITION_FILENAME, "");
   foreach( $lines as $line ):
     file_put_contents(DEFINITION_FILENAME, trim($line) . PHP_EOL, FILE_APPEND);
@@ -46,10 +46,10 @@ function out_to_file( $filename , $lines )
       foreach( $lines as $line):
         if(isset($_POST["del$line_count"])):
           unset($lines[$line_count]);
+          out_to_file( DEFINITION_FILENAME, $lines); 
         endif;
         $line_count = $line_count + 1;
       endforeach;
-      out_to_file( DEFINITION_FILENAME, $lines); 
     ?>
 
       <h1>Manage Printing Queue</h1>
