@@ -8,18 +8,20 @@
     <title>Verification</title>
   </head>
   <body>
-    <?php include( 'nav.html' ); ?>
-    <form method="post" action="admin.php">
+      <?php include( 'nav.html' ); ?>
+    <section class="maincontent">
+      <form method="post" action="admin.php">
 
-      <p>
-        <label for="password">Provide admin password:</label>
-        <input type="password" id="password" name="password" />
-      </p>
-  
-      <p>
-        <input type="submit" value="Enter" name="submit" />
-      </p>
-  
-    </form>
+        <p>
+          <label for="password">Provide admin password:</label>
+          <input type="password" id="password" name="password" />
+        </p>
+    
+        <p>
+          <input type="submit" value="Enter" name="submit" />
+        </p>
+    
+      </form>
+    </section>
   </body>
 </html>

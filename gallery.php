@@ -34,52 +34,55 @@ function out_to_file( $filename , $lines )
 
   <body>
   <?php
-    include('nav.html');
-    $lines = get_a_file( DEFINITION_FILENAME );
-    #Handles the delete button
-    $line_count=0;
-    foreach( $lines as $line):
-      if(isset($_POST["del$line_count"])):
-        unset($lines[$line_count]);
-      endif;
-      $line_count = $line_count + 1;
-    endforeach;
-    out_to_file( DEFINITION_FILENAME, $lines); 
-  ?>
+    include('nav.html'); ?>
+    <section class="maincontent">
+      <?php
+      $lines = get_a_file( DEFINITION_FILENAME );
+      #Handles the delete button
+      $line_count=0;
+      foreach( $lines as $line):
+        if(isset($_POST["del$line_count"])):
+          unset($lines[$line_count]);
+        endif;
+        $line_count = $line_count + 1;
+      endforeach;
+      out_to_file( DEFINITION_FILENAME, $lines); 
+    ?>
 
-    <h1>Gallery</h1>
+      <h1>Gallery</h1>
 
-    <form method="post" action="admin.php">
-      <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
-        <ul>
-        <?php
-          $line_count = 0;
-          foreach( $lines as $line ):
-          list($projectname, $projectlink, $weight,
-            $color, $dateadded) =
-             explode( "\t", $line ); ?>
-            <li>
-            <a href="<?=$projectlink?>"> Link to: <?=$projectname?> </a>
-            </li>
-            <li>
-            <img src="http://products.boysstuff.co.uk/prod_zoom_right/tnt-plunger.jpg" alt="Picture of: <?=$projectname?>" width="250" height="200"/>
-            </li>
-            <li>
-            <?="Weight: $weight" ?>
-            </li>
-            <li>
-            <?="Color: $color" ?>
-            </li>
-            <li>
-            <?="Date Added: $dateadded" ?>
-            </li>
-          <hr></hr>
+      <form method="post" action="admin.php">
+        <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
+          <ul>
           <?php
-          $line_count++;
-          endforeach;
-        ?>
-        </ul>
-    </form>
+            $line_count = 0;
+            foreach( $lines as $line ):
+            list($projectname, $projectlink, $weight,
+              $color, $dateadded) =
+               explode( "\t", $line ); ?>
+              <li>
+              <a href="<?=$projectlink?>"> Link to: <?=$projectname?> </a>
+              </li>
+              <li>
+              <img src="http://products.boysstuff.co.uk/prod_zoom_right/tnt-plunger.jpg" alt="Picture of: <?=$projectname?>" width="250" height="200"/>
+              </li>
+              <li>
+              <?="Weight: $weight" ?>
+              </li>
+              <li>
+              <?="Color: $color" ?>
+              </li>
+              <li>
+              <?="Date Added: $dateadded" ?>
+              </li>
+            <hr></hr>
+            <?php
+            $line_count++;
+            endforeach;
+          ?>
+          </ul>
+      </form>
+    </maincontent>
 
     <aside>
       <p>Buttons have no functionality until javascript implementation</p>
