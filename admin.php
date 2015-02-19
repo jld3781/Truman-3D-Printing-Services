@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-define( 'DEFINITION_FILENAME', 'sampledatapage.txt' );
+define( 'DEFINITION_FILENAME', 'admin.txt' );
 
 /* Read a file of text, strip newlines
 return the file as an array of lines */
@@ -35,6 +35,9 @@ function out_to_file( $filename , $lines )
   <body>
   <?php
     include('nav.html');
+    if( isset( $_POST['password'])):
+      $password = $_POST['password'];
+      if ($password = "abc123"):
     $lines = get_a_file( DEFINITION_FILENAME );
     #Handles the delete button
     $line_count=0;
@@ -97,6 +100,12 @@ function out_to_file( $filename , $lines )
         ?>
         </ul>
     </form>
+  <?php
+  endif;
+  else:
+  ?><h2>Sorry you cannot access this page.</h2><?php
+  endif;
+  ?>
   </body>
 </html>
 
