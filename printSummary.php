@@ -12,6 +12,7 @@
       include( 'nav.html' );
       define( 'PRINT_JOBS', 'printJobs.txt' );
     ?>
+    <section class="maincontent">
 
       <h2>Print Summary</h2>
       
@@ -31,6 +32,6 @@
       <form method="post" action="savePrintJob.php">
         <button type="submit">Submit Order</button>
       </form>
- 
+    </section>
   </body>
 </html>
