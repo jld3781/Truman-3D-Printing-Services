@@ -37,7 +37,7 @@ function out_to_file( $filename , $lines )
     include('nav.html');
     if( isset( $_POST['password'])):
       $password = $_POST['password'];
-      if ($password = "abc123"):
+      if ($password === "abc123"):
     $lines = get_a_file( DEFINITION_FILENAME );
     #Handles the delete button
     $line_count=0;
@@ -101,9 +101,12 @@ function out_to_file( $filename , $lines )
         </ul>
     </form>
   <?php
-  endif;
   else:
   ?><h2>Sorry you cannot access this page.</h2><?php
+  endif;
+  else:
+  ?><h2>Please click on "Admin" in the navigation bar to enter a password
+    and gain access to this page. </h2><?php
   endif;
   ?>
   </body>
