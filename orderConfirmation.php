@@ -9,9 +9,9 @@
     <?php
       include( 'nav.html' );
     ?>
-  
+    <section class="maincontent">
       <h2>Success!</h2>
       <p>Your order has been submitted for printing.</p>
-
+    </section>
   </body>
 </html>
