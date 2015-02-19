@@ -82,20 +82,23 @@ function out_to_file( $filename , $lines )
     </form>
 
     <aside>
-      <ul>
-        <li>
-          Most Recent
-        </li>
-        <li>
-          Most Popular
-        </li>
-        <li>
-          Featured
-        </li>
-        <li>
-          Alphabetical
-        </li>
-      </ul>
+      <p>Buttons have no functionality until javascript implementation</p>
+      <button type="submit" class="recentbut" value="1"
+        name="del<?= $line_count ?>">
+        Most Recent
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Most Popular
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Featured
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Alphabetical
+      </button>
     </aside>
   </body>
 </html>
