@@ -3,15 +3,20 @@ body {
   padding: 0px;
   font-size: 14px;
   font-family: "Open Sans", "Arial", sans-serif;
+  background-color: beige;
 }
 
 header {
 background-color: #5b187e;
 color: white;
+font-size: 30pt;
+padding: 15px;
+margin-bottom: 2px;
+font-weight: bold;
 }
 
 nav {
-  font-size: 14px;
+  font-size: 14pt;
   background-color: #5b187e;
 }
 
@@ -30,6 +35,11 @@ nav ul li a{
   color: white;
 }
 
+nav ul li a:hover{
+color:#fcb525;
+}
+
+
 fieldset{
   border: 0px;
 }
@@ -37,3 +47,9 @@ fieldset{
 label{
   display: block;
 }
+
+.maincontent{
+  padding: 10px;
+}
+
+
