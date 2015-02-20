@@ -56,8 +56,7 @@ function out_to_file( $filename , $lines )
 
       <form method="post" action="admin.php">
         <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
-          <ul>
-
+          <ul class="admin">
           <?php
             $line_count = 0;
             foreach( $lines as $line ):

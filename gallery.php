@@ -35,6 +35,25 @@ function out_to_file( $filename , $lines )
   <body>
   <?php
     include('nav.html'); ?>
+    <aside>
+      <button type="submit" class="recentbut" value="1"
+        name="del<?= $line_count ?>">
+        Most Recent
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Most Popular
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Featured
+      </button>
+      <button type="submit" class="edbut" value="1"
+        name="ed<?= $line_count ?>">
+        Alphabetical
+      </button>
+      <p>Buttons have no functionality until javascript implementation</p>
+    </aside>
     <section class="maincontent">
       <?php
       $lines = get_a_file( DEFINITION_FILENAME );
@@ -51,9 +70,9 @@ function out_to_file( $filename , $lines )
 
       <h1>Gallery</h1>
 
-      <form method="post" action="admin.php">
+      <form method="post" action="gallery.php">
         <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
-          <ul>
+          <ul class="gallery">
           <?php
             $line_count = 0;
             foreach( $lines as $line ):
@@ -75,7 +94,7 @@ function out_to_file( $filename , $lines )
               <li>
               <?="Date Added: $dateadded" ?>
               </li>
-            <hr></hr>
+     
             <?php
             $line_count++;
             endforeach;
@@ -83,26 +102,6 @@ function out_to_file( $filename , $lines )
           </ul>
       </form>
     </maincontent>
-
-    <aside>
-      <p>Buttons have no functionality until javascript implementation</p>
-      <button type="submit" class="recentbut" value="1"
-        name="del<?= $line_count ?>">
-        Most Recent
-      </button>
-      <button type="submit" class="edbut" value="1"
-        name="ed<?= $line_count ?>">
-        Most Popular
-      </button>
-      <button type="submit" class="edbut" value="1"
-        name="ed<?= $line_count ?>">
-        Featured
-      </button>
-      <button type="submit" class="edbut" value="1"
-        name="ed<?= $line_count ?>">
-        Alphabetical
-      </button>
-    </aside>
   </body>
 </html>
 
