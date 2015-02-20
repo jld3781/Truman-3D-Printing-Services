@@ -46,7 +46,7 @@
         
         <fieldset>
           <label for="tel">Phone</label>
-          <input type="text" id="tel" name="phone" required />
+          <input type="tel" id="tel" name="phone" required />
         </fieldset>
         
         <fieldset>
@@ -66,10 +66,9 @@
         <fieldset>
           <label for="weight" 
           title="Enter the weight(in grams) for your project to be printed at.">
-            Weight
+            Weight (g)
           </label>
           <input type="number" id="weight" name="weight" required />
-          grams
         </fieldset>
         
         <fieldset>
