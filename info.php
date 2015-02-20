@@ -17,15 +17,15 @@
       <p>
         A 3D printer is a machine that can print three-dimensional objects 
         out of hard colored plastic. In order to print, a design must 
-        first be made either using <a>software</a> that can be found for 
-        free online or by making use of an <a>object scanner</a>.
+        first be made either using software that can be found for 
+        free online or by making use of an object scanner.
       </p>
 
       <h2>Using Truman's 3D printer</h2>
       <p>
         Students can print any design they have using this website. First,
-        upload your design to the <a>Makerbot Thingiverse</a> then go to 
-        the <a>print page</a> and fill out a request form. Your project
+        upload your design to the Makerbot Thingiverse then go to 
+        the print page and fill out a request form. Your project
         will be added to the queue, and you will recieve an email when 
         it is ready to be picked up from the Magruder office. 3D printed 
         objects are $0.10 per gram to be payed on pickup.
@@ -41,6 +41,10 @@
         </li>
         <li>
           <em>Printing takes time</em>. Expect 30 minutes per gram.
+        </li>
+        <li>
+          Visit the gallery to see samples of things Truman students have 
+          printed
         </li>
       </ul>
       
