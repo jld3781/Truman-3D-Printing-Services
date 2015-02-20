@@ -51,7 +51,7 @@ function out_to_file( $filename , $lines )
         endforeach;
         ?>
 
-        <h1>Manage Printing Queue</h1>
+        <h1>Printing Queue</h1>
       
         <table>
           <?php

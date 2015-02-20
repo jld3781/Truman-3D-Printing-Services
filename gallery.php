@@ -30,9 +30,20 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" href="style.css" />
   </head>
+  
+  
 
   <body>
     <?php include('nav.html'); ?>
+    
+    <aside>
+      <h2>Filter</h2>
+      <button type="submit" value="1">Most Recent</button>
+      <button type="submit" value="1">Most Popular</button>
+      <button type="submit" value="1">Featured</button>
+      <button type="submit" value="1">Alphabetical</button>
+      <p>Buttons have no functionality until javascript implementation</p>
+    </aside>
     
     <section id="gallery">
 
@@ -77,14 +88,7 @@
       </form>
     </section>
     
-    <aside>
-      <h2>Filter</h2>
-      <button type="submit" value="1">Most Recent</button>
-      <button type="submit" value="1">Most Popular</button>
-      <button type="submit" value="1">Featured</button>
-      <button type="submit" value="1">Alphabetical</button>
-      <p>Buttons have no functionality until javascript implementation</p>
-    </aside>
+    
   </body>
 </html>
 
