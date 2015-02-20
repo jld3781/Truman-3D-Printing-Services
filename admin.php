@@ -56,7 +56,6 @@ function out_to_file( $filename , $lines )
 
       <form method="post" action="admin.php">
         <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
-          <ul class="admin">
           <?php
             $line_count = 0;
             foreach( $lines as $line ):
@@ -64,9 +63,7 @@ function out_to_file( $filename , $lines )
               $projectname, $projectid, $projectlink, $status, $weight,
               $color, $comment ) =
                explode( "\t", $line ); ?>
-              <li>
-                <?= "$firstname $lastname ,  $email ,  $phonenum"?>
-              </li>
+              <ul class="queueitems">
               <li>
               <img src="http://products.boysstuff.co.uk/prod_zoom_right/tnt-plunger.jpg" alt="Picture of: <?=$projectname?>" width="250" height="200"/>
               </li>
@@ -74,7 +71,10 @@ function out_to_file( $filename , $lines )
               <a href="<?=$projectlink?>"> Link to: <?=$projectname?> </a>
               </li>
               <li>
-              <?="$projectid, $weight, $color, Current Status: $status" ?>
+              <?="$projectid, $weight, $color" ?>
+              </li>
+              <li>
+                <?= "$firstname $lastname ,  $email ,  $phonenum"?>
               </li>
               <li>
               Comment: <?=$comment?>
@@ -93,13 +93,11 @@ function out_to_file( $filename , $lines )
               Delete
               </button>
               </li>
-
-            <hr></hr>
+              </ul>
             <?php
             $line_count++;
             endforeach;
           ?>
-          </ul>
       </form>
     <?php
     else:

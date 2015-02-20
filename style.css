@@ -15,6 +15,16 @@ margin-bottom: 2px;
 font-weight: bold;
 }
 
+h1{
+margin: 5px;
+margin-left: 0px;
+font-size: 24pt;
+}
+
+h2{
+margin: 1px;
+}
+
 nav {
   font-size: 14pt;
   background-color: #5b187e;
@@ -56,11 +66,30 @@ aside{
 float: left;
 width: 150px;
 margin: 5px;
+margin-top: 30px;
 }
 
-.gallery
+#gallery
+{
+  padding: 10px;
+  margin-left: 160px;
+}
+
+.galleryitems
 {
 float: left;
-width: 300px;
+list-style-type: none;
+margin: 2px;
+padding: 5px;
+background-color: white;
+border: solid 2px black;
 }
 
+.queueitems
+{
+list-style-type: none;
+margin: 2px;
+padding: 5px;
+background-color: white;
+border: solid 2px black;
+}

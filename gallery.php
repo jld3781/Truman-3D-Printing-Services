@@ -36,6 +36,7 @@ function out_to_file( $filename , $lines )
   <?php
     include('nav.html'); ?>
     <aside>
+      <h2>Filter</h2>
       <button type="submit" class="recentbut" value="1"
         name="del<?= $line_count ?>">
         Most Recent
@@ -54,7 +55,7 @@ function out_to_file( $filename , $lines )
       </button>
       <p>Buttons have no functionality until javascript implementation</p>
     </aside>
-    <section class="maincontent">
+    <section id="gallery">
       <?php
       $lines = get_a_file( DEFINITION_FILENAME );
       #Handles the delete button
@@ -68,17 +69,18 @@ function out_to_file( $filename , $lines )
       out_to_file( DEFINITION_FILENAME, $lines); 
     ?>
 
+      
       <h1>Gallery</h1>
 
       <form method="post" action="gallery.php">
         <?php $lines = get_a_file( DEFINITION_FILENAME ); ?>
-          <ul class="gallery">
           <?php
             $line_count = 0;
             foreach( $lines as $line ):
             list($projectname, $projectlink, $weight,
               $color, $dateadded) =
                explode( "\t", $line ); ?>
+              <ul class="galleryitems">
               <li>
               <a href="<?=$projectlink?>"> Link to: <?=$projectname?> </a>
               </li>
@@ -94,14 +96,13 @@ function out_to_file( $filename , $lines )
               <li>
               <?="Date Added: $dateadded" ?>
               </li>
-     
+              </ul>
             <?php
             $line_count++;
             endforeach;
           ?>
-          </ul>
       </form>
-    </maincontent>
+    </section>
   </body>
 </html>
 
