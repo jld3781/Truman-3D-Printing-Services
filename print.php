@@ -1,18 +1,26 @@
-<DOCTYPE html>
+<?php
+  # Jessica DiMariano
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
+?>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="author" content="Jessica, Sam, Jimmy" />
     <title>Print a Project</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body>
   
+  <body>
     <?php
       include('nav.html');
       define( 'AVAILABLE_COLORS', 'colors.txt' );
     ?>
+    
     <section class="maincontent">
-      <h2>Print a Project</h2>
+    
+      <h1>Print a Project</h1>
         
       <form method="post" action="savePrintDetails.php">
       
@@ -57,7 +65,7 @@
         
         <fieldset>
           <label for="weight" 
-          title="Enter the weight (in grams) for your project to be printed at.">
+          title="Enter the weight(in grams) for your project to be printed at.">
             Weight
           </label>
           <input type="number" name="weight" required />
@@ -65,23 +73,23 @@
         </fieldset>
         
         <fieldset>
-            <label for="color">Color</label>
-            <select name="color" required>
+          <label for="color">Color</label>
+          <select name="color" required>
+            
+            <?php 
+              $availableColors = file(AVAILABLE_COLORS);
+              $placeholder = array_shift($availableColors);
               
-              <?php 
-                $availableColors = file(AVAILABLE_COLORS);
-                $placeholder = array_shift($availableColors);
-                
-                echo "<option value=\"\" selected=\"selected\" 
-                        disabled=\"disabled\">$placeholder</option>";
-                foreach($availableColors as $color):
-                  $color = trim($color);
-                  echo "<option value=\"$color\">$color</option>";
-                endforeach;
-              ?>
+              echo "<option value=\"\" selected=\"selected\" 
+                      disabled=\"disabled\">$placeholder</option>";
+              foreach($availableColors as $color):
+                $color = trim($color);
+                echo "<option value=\"$color\">$color</option>";
+              endforeach;
+            ?>
               
-            </select>
-          </fieldset>
+          </select>
+        </fieldset>
         
         <fieldset>
           <label for="comments">Comments</label>

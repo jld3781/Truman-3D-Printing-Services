@@ -2,3 +2,7 @@ First Name	Last Name	Student ID	Email	Phone	Project Name	Project ID	Project Link
 Jessica	DiMariano	000713731	jld3781@truman.edu	3145935436	First Project	Project ID	http://someaddress.com	Waiting	15	Yellow	my comment!
 Jessica	DiMariano	0	jld3781@truman.edu	3145935436	asdf	Project ID	asfgasd	Waiting	546	Purple	asdfsd
 fdsa	fdsaf	221	fdsa@fdsfa	213	dfas	Project ID	fdsaf	Waiting	213	Brown	fdsa
+Jessica	DiMariano	000	jld3781@truman.edu	3145935436	Something	Project ID	http://someaddress.com	Waiting	50	Orange	6541asdf
+Jessica	DiMariano	55	jld3781@truman.edu	3145935436	Sadf	Project ID	asdf	Waiting	55	White	frg
+Jessica	DiMariano	565	jld3781@truman.edu	3145935436	lkj	Project ID	lkj	Waiting	65	Yellow	kjn
+Jessica	DiMariano	66	jld3781@truman.edu	3145935436	445	Project ID	5454	Waiting	2	Blue	,lk

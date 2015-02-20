@@ -1,20 +1,27 @@
-<DOCTYPE html>
+<?php
+  # Jessica DiMariano
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
+?>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta name="author" content="Jessica DiMariano" />
     <title>Print Summary</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
-  <body>
   
+  <body>
     <?php
       session_start();
       include( 'nav.html' );
       define( 'PRINT_JOBS', 'printJobs.txt' );
     ?>
+    
     <section class="maincontent">
-
-      <h2>Print Summary</h2>
+    
+      <h1>Print Summary</h1>
       
       <ul id="print-summary-list">
         <li>First Name: <?= $_SESSION['firstName'] ?></li>
