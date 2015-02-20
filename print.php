@@ -26,41 +26,41 @@
       
         <fieldset>
           <label for="firstName">First Name</label>
-          <input type="text" name="firstName" required />
+          <input type="text" id="firstName" name="firstName" required />
         </fieldset>
         
         <fieldset>
           <label for="lastName">Last Name</label>
-          <input type="text" name="lastName" required />
+          <input type="text" id="lastName" name="lastName" required />
         </fieldset>
         
         <fieldset>
           <label for="studentId">Student ID</label>
-          <input type="number" name="studentId" required />
+          <input type="number" id="studentId" name="studentId" required />
         </fieldset>
         
         <fieldset>
           <label for="email">Email</label>
-          <input type="email" name="email" required />
+          <input type="email" id="email" name="email" required />
         </fieldset>
         
         <fieldset>
           <label for="tel">Phone</label>
-          <input type="text" name="phone" required />
+          <input type="text" id="tel" name="phone" required />
         </fieldset>
         
         <fieldset>
           <label for="projectName" title="Create a name for your project.">
             Project Name
           </label>
-          <input type="text" name="projectName" required />
+          <input type="text" id="projectName" name="projectName" required />
         </fieldset>
        
        <fieldset>
           <label for="projectLink" title="Provide a link to your project file.">
             Project Link
           </label>
-          <input type="text" name="projectLink" required />
+          <input type="text" id="projectLink" name="projectLink" required />
         </fieldset>
         
         <fieldset>
@@ -68,13 +68,13 @@
           title="Enter the weight(in grams) for your project to be printed at.">
             Weight
           </label>
-          <input type="number" name="weight" required />
+          <input type="number" id="weight" name="weight" required />
           grams
         </fieldset>
         
         <fieldset>
           <label for="color">Color</label>
-          <select name="color" required>
+          <select name="color" id="color" required>
             
             <?php 
               $availableColors = file(AVAILABLE_COLORS);
@@ -93,7 +93,7 @@
         
         <fieldset>
           <label for="comments">Comments</label>
-          <textarea type="text" name="comments"></textarea>
+          <textarea name="comments" id="comments"></textarea>
         </fieldset>
         
         <button type="submit" name="printDetails">Next</button>
