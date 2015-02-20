@@ -68,8 +68,20 @@ function out_to_file( $filename , $lines )
             foreach($lines as $line):
             echo "<tr>";
               $words = explode( "\t", $line );
+              $count = 1;
               foreach($words as $word):
-                echo "<td>$word</td>";
+                if($count == 9):
+                  echo "<td><select name=\"status\">
+  -                  <option value=\"current\">$word</option>
+  -                  <option value=\"waiting\">Waiting</option>
+  -                  <option value=\"hold\">On Hold</option>
+  -                  <option value=\"printing\">Printing</option>
+  -                  <option value=\"completed\">Completed</option>
+  -                </select></td>";
+                else:  
+                  echo "<td>$word</td>";
+                endif;
+                $count++;
               endforeach;
             echo "</tr>";
             endforeach;
