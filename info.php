@@ -8,7 +8,7 @@
     <title>Info</title>
   </head>
   <body>
-    <?php include( 'nav.html' ); ?>
+    <?php include( 'nav.php' ); ?>
     
     <section class="maincontent">
       <h1>Information</h1>

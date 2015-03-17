@@ -26,7 +26,7 @@
       $_SESSION['weight'] = $_POST['weight'];
       $_SESSION['color'] = $_POST['color'];
       $_SESSION['comments'] = $_POST['comments'];
-      include( 'nav.html' );
+      include( 'nav.php' );
     ?>
     
     <section class="maincontent">

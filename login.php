@@ -1,6 +1,7 @@
 <?php
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
+  session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,13 @@
     <title>Home</title>
   </head>
   <body>
-    <?php include( 'nav.html' ); ?>
+    <?php include( 'nav.php' ); ?>
     <section class="maincontent">
+    
+    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true):?>
+      <h1>Already Logged In</h1>
+      
+    <?php else:?>
       <h1>Sign In</h1>
       
       <form method="post" action="verifyLogin.php">
@@ -32,3 +38,4 @@
      </section>
   </body>
 </html>
+<?php endif; ?>
