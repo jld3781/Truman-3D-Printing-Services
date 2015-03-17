@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 define( 'DEFINITION_FILENAME', 'printJobs.txt' );
+define('USER_DATABASE','users.txt');
 
 /* Read a file of text, strip newlines
 return the file as an array of lines */
@@ -36,23 +37,25 @@ function out_to_file( $filename , $lines )
     <?php include('nav.php'); ?>
       <section class="maincontent">
         <?php
-        if( isset( $_POST['password'])):
-          $password = $_POST['password'];
-          if ($password === "abc123"):
-        $lines = get_a_file( DEFINITION_FILENAME );
-        #Handles the delete button
-        $line_count=0;
-        foreach( $lines as $line):
-          if(isset($_POST["del$line_count"])):
-            unset($lines[$line_count]);
-            out_to_file( DEFINITION_FILENAME, $lines); 
+        
+        $lines = file( USER_DATABASE, FILE_IGNORE_NEW_LINES );
+        array_shift( $lines );
+
+        foreach( $lines as $line ):
+          list( $username, , , , , , , $admin) = explode( "\t", $line );
+          if( !($_SESSION['username'] == trim( $username ) ) ):
+            $admin = false;
           endif;
-          $line_count = $line_count + 1;
         endforeach;
+               
+        $admin = true; #for testing purposes
+        
+        if( isset( $_SESSION['loggedIn'] ) && 
+                  $_SESSION['loggedIn'] == true &&
+                  $admin == true):
         ?>
 
         <h1>Printing Queue</h1>
-      
         <table>
           <?php
             $lines = file( DEFINITION_FILENAME );
@@ -88,19 +91,10 @@ function out_to_file( $filename , $lines )
           ?>
         </table>
     
-        <?php
-        else:
-        ?>
-        <h2>Sorry you cannot access this page.</h2>
-        <?php
-        endif;
-        else:
-        ?>
-        <h2>Please click on "Admin" in the navigation bar to enter a password
-          and gain access to this page. </h2>
-        <?php
-        endif;
-        ?>
+        <?php else: ?>
+          <h2>Sorry you cannot access this page.</h2>
+        <?php endif; ?>
+        
       </section>
   </body>
 </html>

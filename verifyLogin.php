@@ -7,7 +7,7 @@
   define('USER_DATABASE','users.txt');
   
   $lines = file( USER_DATABASE, FILE_IGNORE_NEW_LINES );
-  $firstLine = array_shift($lines);
+  array_shift($lines);
 
   foreach( $lines as $line ):
     list( $username, , , , , , , ) = explode( "\t", $line );

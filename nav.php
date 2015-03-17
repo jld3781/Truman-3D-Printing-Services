@@ -45,6 +45,6 @@
       <li><a href="info.php">Info</a></li>
       <li><a href="print.php">Print</a></li>
       <li><a href="gallery.php">Gallery</a></li>
-      <li><a href="verification.php">Admin</a></li>
+      <li><a href="admin.php">Admin</a></li>
     </ul>  
   </nav>  

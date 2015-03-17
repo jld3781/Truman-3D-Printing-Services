@@ -1,0 +1,2 @@
+Username	Password	Email	Banner ID	First Name	Last Name	Phone	Admin
+jld3781	pass	jld3781@truman.edu	000713731	Jessica	DiMariano	3145935436	1
