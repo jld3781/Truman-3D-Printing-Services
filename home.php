@@ -11,7 +11,7 @@
     <title>Home</title>
   </head>
   <body>
-    <?php include( 'nav.html' ); ?>
+    <?php include( 'nav.php' ); ?>
     <section class="maincontent">
       <h1>Welcome</h1>
       <p>Welcome to Truman's 3D printing services.</p>
