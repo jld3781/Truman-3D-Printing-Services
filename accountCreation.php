@@ -3,20 +3,20 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
   define('USERS_FILENAME', 'users.txt');
-  $loggedin = false; #isset( $_SESSION['loggedin'])
+  $loggedin = isset( $_SESSION['loggedin']);
+  $loggedin = true;
   $error_msg = '';
   if(!$loggedin):
     if(isset($_POST['submit'])):
       if(isset($_POST['firstname']) && 
          isset($_POST['lastname']) && 
          isset($_POST['studentid']) && 
-         isset($_POST['email']) && 
-         isset($_POST['lastname']) && 
+         isset($_POST['email']) &&  
          isset($_POST['tel']) &&
          isset($_POST['username']) &&
          isset($_POST['password']) &&
          isset($_POST['retypepassword']) ):
-        $lines = file( $filename, FILE_IGNORE_NEW_LINES );
+        $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
         $alreadytaken = false;
         foreach( $lines as $line ):
           $oneline = explode( "\t", $line );
@@ -31,6 +31,12 @@
              preg_match( '|^\S+$|', $_POST['retypepassword']) ):
             if($_POST['password'] === $_POST['retypepassword']):
               #add new account and start session
+              $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+              $newline = $_POST['username']."\t".$hashedpassword."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel']."\t".'0';
+              file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
+              session_start();
+              $_SESSION['loggedin'] = true;
+              $_SESSION['username'] = $_POST['username'];
             else:
               $error_msg = 'Passwords did not match';
             endif;
@@ -63,6 +69,7 @@
     ?>
     
     <section class="maincontent">
+    <?= $error_msg ?>
     <?php if($loggedin): ?>
     
       <p>
@@ -74,7 +81,7 @@
       <form method="post" action="accountCreation.php">
         <fieldset>
           <label for="firstname">First Name</label>
-          <input type="text" pattern="\w+" id="firstname" name="firstName" required />
+          <input type="text" pattern="\w+" id="firstname" name="firstname" required />
         </fieldset>
         
         <fieldset>
@@ -113,11 +120,11 @@
         
         <fieldset>
           <label for="retypepassword">Retype Password</label>
-          <input type="password" id="retypepassword" name="retypePassword" 
+          <input type="password" id="retypepassword" name="retypepassword" 
                  pattern="[^ ]{5,}" required />
         </fieldset>
         
-        <button type="submit" name="submit">Log In</button>
+        <button type="submit" name="submit">Submit</button>
       </form>
     
     <?php endif; ?>
