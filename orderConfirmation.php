@@ -2,6 +2,20 @@
   # Jessica DiMariano
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
+  session_start();
+  
+  define( 'PRINT_JOBS', 'printJobs.txt' );
+  $_SESSION['username'] = "test_username";
+  $printJob = "Project ID" . "\t" .
+             $_SESSION['username'] . "\t" .
+             $_SESSION['projectName'] . "\t" .
+             $_SESSION['projectLink'] . "\t" .
+             "Waiting" . "\t" .
+             $_SESSION['weight'] . "\t" .
+             $_SESSION['color'] . "\t" .
+             $_SESSION['comments'] . PHP_EOL;
+             
+  file_put_contents(PRINT_JOBS, $printJob, FILE_APPEND);
 ?>
 <!DOCTYPE html>
 <html>

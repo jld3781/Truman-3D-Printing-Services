@@ -2,6 +2,12 @@
   # Jessica DiMariano
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
+  
+  $_SESSION['projectName'] = $_POST['projectName'];
+  $_SESSION['projectLink'] = $_POST['projectLink'];
+  $_SESSION['weight'] = $_POST['weight'];
+  $_SESSION['color'] = $_POST['color'];
+  $_SESSION['comments'] = $_POST['comments'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,8 +21,12 @@
   <body>
     <?php
       session_start();
+      $_SESSION['projectName'] = $_POST['projectName'];
+      $_SESSION['projectLink'] = $_POST['projectLink'];
+      $_SESSION['weight'] = $_POST['weight'];
+      $_SESSION['color'] = $_POST['color'];
+      $_SESSION['comments'] = $_POST['comments'];
       include( 'nav.html' );
-      define( 'PRINT_JOBS', 'printJobs.txt' );
     ?>
     
     <section class="maincontent">
@@ -24,11 +34,6 @@
       <h1>Print Summary</h1>
       
       <ul id="print-summary-list">
-        <li>First Name: <?= $_SESSION['firstName'] ?></li>
-        <li>Last Name: <?= $_SESSION['lastName'] ?></li>
-        <li>Student ID: <?= $_SESSION['studentId'] ?></li>
-        <li>Email: <?= $_SESSION['email'] ?></li>
-        <li>Phone: <?= $_SESSION['phone'] ?></li>
         <li>Project Name: <?= $_SESSION['projectName'] ?></li>
         <li>Project Link: <?= $_SESSION['projectLink'] ?></li>
         <li>Weight: <?= $_SESSION['weight'] ?> grams</li>
@@ -36,7 +41,7 @@
         <li>Comments: <?= $_SESSION['comments'] ?></li>
       </ul>
 
-      <form method="post" action="savePrintJob.php">
+      <form method="post" action="orderConfirmation.php">
         <button type="submit">Submit Order</button>
       </form>
     </section>
