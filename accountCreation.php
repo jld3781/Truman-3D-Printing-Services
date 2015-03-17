@@ -4,7 +4,6 @@
   ini_set('display_errors', '1');
   define('USERS_FILENAME', 'users.txt');
   $loggedin = isset( $_SESSION['loggedin']);
-  $loggedin = true;
   $error_msg = '';
   if(!$loggedin):
     if(isset($_POST['submit'])):
