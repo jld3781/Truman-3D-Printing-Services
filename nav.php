@@ -1,10 +1,3 @@
-<?php 
-  error_reporting(E_ALL);
-  ini_set('display_errors', '1');
-  session_start();
-  $loggedin = false;
-?>
-
   <header>Truman 3D Printing Services</header>
 
   <div id="loginheader">

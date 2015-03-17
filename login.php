@@ -35,6 +35,8 @@
         <button type="submit" name="login">Sign In</button>
       </form>
       
+      <a href="accountCreation.php">Create a new account</a>
+
      </section>
   </body>
 </html>
