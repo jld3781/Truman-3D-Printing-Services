@@ -22,33 +22,8 @@
     
       <h1>Print a Project</h1>
         
-      <form method="post" action="savePrintDetails.php">
+      <form method="post" action="printSummary.php">
       
-        <fieldset>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required />
-        </fieldset>
-        
-        <fieldset>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required />
-        </fieldset>
-        
-        <fieldset>
-          <label for="studentId">Student ID</label>
-          <input type="number" id="studentId" name="studentId" required />
-        </fieldset>
-        
-        <fieldset>
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </fieldset>
-        
-        <fieldset>
-          <label for="tel">Phone</label>
-          <input type="tel" id="tel" name="phone" required />
-        </fieldset>
-        
         <fieldset>
           <label for="projectName" title="Create a name for your project.">
             Project Name
