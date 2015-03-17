@@ -8,7 +8,7 @@
     <title>Verification</title>
   </head>
   <body>
-      <?php include( 'nav.html' ); ?>
+      <?php include( 'nav.php' ); ?>
     <section class="maincontent">
       <form method="post" action="admin.php">
       

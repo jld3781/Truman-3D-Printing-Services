@@ -33,7 +33,7 @@ function out_to_file( $filename , $lines )
   </head>
 
   <body>
-    <?php include('nav.html'); ?>
+    <?php include('nav.php'); ?>
       <section class="maincontent">
         <?php
         if( isset( $_POST['password'])):

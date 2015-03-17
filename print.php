@@ -14,7 +14,7 @@
   
   <body>
     <?php
-      include('nav.html');
+      include('nav.php');
       define( 'AVAILABLE_COLORS', 'colors.txt' );
     ?>
     
