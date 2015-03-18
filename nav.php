@@ -1,10 +1,7 @@
-  <?php
-  $loggedin = isset($_SESSION['loggedin']);
-  ?>
   <header>Truman 3D Printing Services</header>
 
   <div id="loginheader">
-  <?php if( $loggedin ): ?>
+  <?php if( isset($_SESSION['loggedin'] )): ?>
     <p>
       You're logged in as: <?= $_SESSION['firstname']?>
      </p>
@@ -29,7 +26,7 @@
       </p>
     </form>
     <p class="loginheader">
-      <a href="accountCreate.php" class="loginheader">Create Account</a>
+      <a href="accountCreation.php" class="loginheader">Create Account</a>
     </p>
 
   <?php endif; ?>

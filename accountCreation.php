@@ -36,6 +36,8 @@
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['username'] = $_POST['username'];
+              header( 'Location: accountCreated.php' );
+              exit;
             else:
               $error_msg = 'Passwords did not match';
             endif;
@@ -72,7 +74,7 @@
     <?php if($loggedin): ?>
     
       <p>
-        You are already logged in.
+        You are already logged in as <?=$_SESSION['username']?>. <a href="home.php">Home</a>
       </p>
     
     <?php else: ?>

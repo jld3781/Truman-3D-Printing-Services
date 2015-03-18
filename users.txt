@@ -1,1 +1,4 @@
 jfs1744	$2y$10$ASSTqS0yged.srk8ESwzmu8RjI7cmezFBF083a3mwOaQwDLI.hxLy	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
+newuser	$2y$10$QS.XsHdUzDNM7Gys2QToN.Qi71AddNnBtSWV31Thxa2KymzKKh6Gi	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
+neweruser	$2y$10$GysiiWN1OGHphn0ov6yKH.iXMZ7q2wIVLbvdmeCw8q2A/MoyiUThS	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
+any	$2y$10$BTYgl981JIFxx5H8B0DoCeJi2lIWeGsw.yfAsUolUInuNdG0VqBpW	jfs1744@truman.edu	000755259	James	Sorsen	3149971927	0
