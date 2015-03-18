@@ -1,3 +1,6 @@
+  <?php
+  $loggedin = isset($_SESSION['loggedin']);
+  ?>
   <header>Truman 3D Printing Services</header>
 
   <div id="loginheader">
