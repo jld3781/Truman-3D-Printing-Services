@@ -24,7 +24,7 @@ if( $loggedin && isset($_POST['submit'])):
       if( $_SESSION['username'] === $currentUserName):
         $passwordmatch = password_verify($_POST['password'], $oneline[1]);
         if($passwordmatch):
-          $newline = $oneline[0]."\t".$oneline[1]."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel'];
+          $newline = $oneline[0]."\t".$oneline[1]."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel']."\t".$oneline[7];
           $_SESSION['firstname']=$_POST['firstname'];
           $_SESSION['lastname']=$_POST['lastname'];
           file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
@@ -114,7 +114,8 @@ endif;
             <p>
               <label for="password">Password: </label>
               <input type="password" required="required" name="password"
-                     pattern="[^ ]{5,}" id="password"/>
+                     pattern="[^ ]{5,}" 
+                     placeholder="Enter password to submit" id="password"/>
             </p>
 
             <p>
