@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-define( 'PRINTJOB_DATABASE', 'printJobs.txt' );
+define('PRINTJOB_DATABASE', 'printJobs.txt' );
 define('USER_DATABASE','users.txt');
 
 /* Read a file of text, strip newlines
