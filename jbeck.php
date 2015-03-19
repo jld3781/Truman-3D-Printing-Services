@@ -17,6 +17,8 @@
       <p>You can login as an admin with</p>
       <p>Username: jbeck</p>
       <p>Password: pass5</p>
+    </section>
+    <section class="maincontent">
       <p>You can login as a regular user with</p>
       <p>Username: jbeck1</p>
       <p>Password: pass5</p>

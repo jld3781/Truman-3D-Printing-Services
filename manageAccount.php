@@ -73,8 +73,9 @@ endif;
         <?= $error_msg ?>
       </p>
 
+      <h2>Edit Profile</h2>
       <form action="manageAccount.php" method="post">
-          <fieldset><legend>Edit Profile</legend>
+          <fieldset>
             <p>
               <label for="firstname">First Name: </label>
               <input type="text" required="required" 

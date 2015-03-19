@@ -1,4 +1,5 @@
 <?php
+#Samuel Livingston
 if(session_id() == '' || !isset($_SESSION)): 
     // session isn't started
     session_start();
@@ -36,6 +37,7 @@ endif;
     </form>
     <p class="loginheader">
       <a href="accountCreation.php" class="loginheader">Create Account</a>
+      <a href="forgotpassword.php" class="loginheader">Forgot Password?</a>
     </p>
 
   <?php endif; ?>
