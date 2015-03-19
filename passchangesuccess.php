@@ -1,0 +1,20 @@
+<?php
+  error_reporting(E_ALL);
+  ini_set('display_errors', '1');
+?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Jessica, Sam, Jimmy" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Password Change Succes</title>
+  </head>
+  <body>
+    <?php include( 'nav.php' ); ?>
+    <section class="maincontent">
+      <p>Your password has been successfully changed!</p>
+      <a href="viewAccount.php">Okay</a>
+    </section>
+  </body>
+</html>
