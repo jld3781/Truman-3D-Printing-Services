@@ -10,7 +10,8 @@ endif;
   <div id="loginheader">
   <?php if( isset($_SESSION['loggedin'] )): ?>
     <p>
-      You're logged in as: <?= $_SESSION['firstname']?> <?=$_SESSION['lastname']?>
+      You're logged in as: <?= $_SESSION['firstname']?> 
+        <?=$_SESSION['lastname']?>
      </p>
      <p>
        <a href="viewAccount.php" class="loginheader">Profile</a>

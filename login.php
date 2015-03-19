@@ -15,7 +15,7 @@
     <?php include( 'nav.php' ); ?>
     <section class="maincontent">
     
-    <?php if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true):?>
+    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
       <h1>Already Logged In</h1>
       
     <?php else:?>
