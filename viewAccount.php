@@ -25,7 +25,7 @@ $filename = DEFINITION_FILENAME;
   <body>
     <?php include( 'nav.php' ); ?>
     <section>
-    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedIn'] == true):?>
+    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
       <p>
         First name: <?=$_SESSION['firstname'];?>
       </p>
