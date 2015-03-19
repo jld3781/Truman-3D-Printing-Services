@@ -13,7 +13,7 @@ endif;
       You're logged in as: <?= $_SESSION['firstname']?> <?=$_SESSION['lastname']?>
      </p>
      <p>
-       <a href="manageAccount.php" class="loginheader">Profile</a>
+       <a href="viewAccount.php" class="loginheader">Profile</a>
        <a href="logout.php" class="loginheader">Logout</a>
      </p>
   <?php else:?>
