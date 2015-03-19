@@ -68,6 +68,9 @@ endif;
         endif;
       endforeach;
       ?>
+      <p>
+        <?= $error_msg ?>
+      </p>
 
       <form action="manageAccount.php" method="post">
           <fieldset><legend>Edit Profile</legend>
@@ -119,7 +122,7 @@ endif;
             </p>
 
             <p>
-              <button type="submit" name="submit">Submit</button>
+              <button type="submit" name="submit">Submit Changes</button>
             </p>
           </fieldset>
         </form>
