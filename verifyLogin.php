@@ -29,7 +29,6 @@
             $_SESSION['aflag'] = $aflag;
             header( 'Location: home.php' );
           else:
-            header( 'Location: login.php' );
             $error_msg = 'Username-password pair is invalid';
           endif;
         endforeach;

@@ -37,7 +37,8 @@ if( $loggedin && isset($_POST['submit'])):
       endif;
     endforeach;
     if($passwordmatch):
-      header( 'Location: viewAccount.php' );
+      header( 'Location: profilechangesuccess.php' ); //Success
+      //header( 'Location: viewAccount.php' );
       exit; 
     endif;
   else:

@@ -1,5 +1,6 @@
 <?php
   # Jimmy Sorsen
+  session_start();
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
   define('USERS_FILENAME', 'users.txt');
@@ -15,6 +16,8 @@
          isset($_POST['username']) &&
          isset($_POST['password']) &&
          isset($_POST['retypepassword']) ):
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
         $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
         $alreadytaken = false;
         foreach( $lines as $line ):

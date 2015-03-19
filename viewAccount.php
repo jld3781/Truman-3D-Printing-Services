@@ -32,6 +32,7 @@ $loggedin = isset($_SESSION['loggedin']);
         endif;
       endforeach;
       ?>
+      <h2>Your Profile</h2>
       <p>
         Username: <?= $accountDetails[0] ?>
       <p>

@@ -2,4 +2,6 @@ jfs1744	$2y$10$ASSTqS0yged.srk8ESwzmu8RjI7cmezFBF083a3mwOaQwDLI.hxLy	jfs1744@tru
 newuser	$2y$10$QS.XsHdUzDNM7Gys2QToN.Qi71AddNnBtSWV31Thxa2KymzKKh6Gi	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
 neweruser	$2y$10$GysiiWN1OGHphn0ov6yKH.iXMZ7q2wIVLbvdmeCw8q2A/MoyiUThS	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
 any	$2y$10$BTYgl981JIFxx5H8B0DoCeJi2lIWeGsw.yfAsUolUInuNdG0VqBpW	jfs1744@truman.edu	000755259	James	Sorsen	3149971927	0
-sam1	$2y$10$23L9Gxb21WyQ1jYSb5HTfujxZXCHVAKL5LDdH6bgoxQXhdsei4mku	sjl6333@truman.edu	000850633	Samuel	Livingston	8165880680	0
+sam1	$2y$10$Bq9MU3XFO31Lt3Nz1TJEdu.WZjet2fQYr2ZNdv4g/j2mnVpmriqii	sjl6333@truman.edu	000850633	Samuel	Livingston	8165880680	1
+jbeck	$2y$10$KeZ7BWHavInV1d0UG4IvwO.THREl7fYr4oLwz.d.WgSD5FaOLKFnu	jbeck@truman.edu	000555555	John	Beck	5555555555	1
+jbeck1	$2y$10$rKQ0RH/tNEJDz.kzRi9Z4.Jlxk.SFHKO3zcFSXfig1TcUacQSSn9m	jbeck@truman.edu	000555555	John	Beck	5555555555	0

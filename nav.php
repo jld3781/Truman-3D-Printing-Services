@@ -48,5 +48,6 @@ endif;
       <li><a href="print.php">Print</a></li>
       <li><a href="gallery.php">Gallery</a></li>
       <li><a href="admin.php">Admin</a></li>
+      <li><a href="jbeck.php">For Dr.Beck</a></li>
     </ul>  
   </nav>  

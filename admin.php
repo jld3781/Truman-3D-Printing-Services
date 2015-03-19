@@ -102,7 +102,9 @@ endif;
         </table>
     
         <?php else: ?>
-          <h2>Sorry you cannot access this page.</h2>
+          <section>
+            <h2>Sorry you cannot access this page.</h2>
+          </section>
         <?php endif; ?>
         
       </section>
