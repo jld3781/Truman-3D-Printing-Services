@@ -10,14 +10,19 @@
   array_shift($lines);
 
   foreach( $lines as $line ):
-    list( $username, , , , , , , ) = explode( "\t", $line );
+    list( $username, , , , $firstname, $lastname, , ) = explode( "\t", $line );
     if( $_POST['username'] == trim( $username ) ):
-      $existingUser = true;
+      $_SESSION['username'] = $_POST['username'];
+      $_SESSION['loggedIn'] = true;
+      $_SESSION['firstname'] = $firstname;
+      $_SESSION['lastname'] = $lastname;
+      header( 'Location: home.php' );
     else:
-      $existingUser = false;
+      header( 'Location: login.php' );
     endif;
   endforeach;
   
+/*
   if( $existingUser ):
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['loggedIn'] = true;
@@ -25,5 +30,5 @@
   else:
     header( 'Location: login.php' );
   endif;
-    
+    */
 ?>
