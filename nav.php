@@ -1,15 +1,23 @@
-  <header>Truman 3D Printing Services</header>
+<?php
+if(session_id() == '' || !isset($_SESSION)): 
+    // session isn't started
+    session_start();
+endif;
+?>
+
+<header>Truman 3D Printing Services</header>
 
   <div id="loginheader">
   <?php if( isset($_SESSION['loggedin'] )): ?>
     <p>
-      You're logged in as: <?= $_SESSION['firstname']?>
+      You're logged in as: <?= $_SESSION['firstname']?> <?=$_SESSION['lastname']?>
      </p>
      <p>
-       <a href="logout.php">Logout</a>
+       <a href="manageAccount.php" class="loginheader">Profile</a>
+       <a href="logout.php" class="loginheader">Logout</a>
      </p>
   <?php else:?>
-    <form action="profile.php" method="post">
+    <form action="verifyLogin.php" method="post">
       <p>
         Login
         <label for="username"></label>

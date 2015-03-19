@@ -101,17 +101,9 @@ endif; ?>
   </head>
 
   <body>
-    <?php include( 'nav.html' ); ?>
+    <?php include( 'nav.php' ); ?>
     <section>
     <?php if( $loggedin ): ?>
-    <aside>
-        <p>
-          You're logged in as: <?= $_SESSION['firstname']?>
-        </p>
-        <p>
-          <a href="logout.php">Logout</a>
-        </p>
-    </aside>
 
       <form action="profile.php" method="post">
           <fieldset><legend>Edit Profile</legend>

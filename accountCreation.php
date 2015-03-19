@@ -2,7 +2,6 @@
   # Jimmy Sorsen
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
-  session_start();
   define('USERS_FILENAME', 'users.txt');
   $loggedin = isset( $_SESSION['loggedin']);
   $error_msg = '';
@@ -54,7 +53,6 @@
       endif;
     endif;
   endif;
-
 ?>
 <!DOCTYPE html>
 <html>
