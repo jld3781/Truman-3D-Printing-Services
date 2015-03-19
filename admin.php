@@ -82,9 +82,9 @@ endif;
                     <select name="status">
                       <option value="<?=$word?>">Current: <?=$word?></option>
                       <option value="Waiting">Waiting</option>
-                      <option value="On Hold">On Hold</option>
                       <option value="Printing">Printing</option>
                       <option value="Completed">Completed</option>
+                      <option value="On Hold">On Hold</option>
                     </select>
                     <input type="hidden" name="linenum" value="<?=$linecounter?>">
                     <button type="submit" name="submit">Submit</button>
