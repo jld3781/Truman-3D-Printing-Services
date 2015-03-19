@@ -13,7 +13,7 @@
     list( $username, , , , $firstname, $lastname, , ) = explode( "\t", $line );
     if( $_POST['username'] == trim( $username ) ):
       $_SESSION['username'] = $_POST['username'];
-      $_SESSION['loggedIn'] = true;
+      $_SESSION['loggedin'] = true;
       $_SESSION['firstname'] = $firstname;
       $_SESSION['lastname'] = $lastname;
       header( 'Location: home.php' );

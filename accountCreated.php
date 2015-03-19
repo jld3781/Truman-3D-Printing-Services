@@ -1,4 +1,5 @@
 <?php
+session_start();
 $loggedin = isset($_SESSION['loggedin']);
 ?>
 <!DOCTYPE html>

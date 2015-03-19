@@ -2,6 +2,7 @@
   # Jimmy Sorsen
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
+  session_start();
   define('USERS_FILENAME', 'users.txt');
   $loggedin = isset( $_SESSION['loggedin']);
   $error_msg = '';
@@ -33,9 +34,10 @@
               $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
               $newline = $_POST['username']."\t".$hashedpassword."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel']."\t".'0';
               file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
-              session_start();
-              $_SESSION['loggedin'] = true;
               $_SESSION['username'] = $_POST['username'];
+              $_SESSION['loggedin'] = true;
+              $_SESSION['firstname'] = $firstname;
+              $_SESSION['lastname'] = $lastname;
               header( 'Location: accountCreated.php' );
               exit;
             else:
