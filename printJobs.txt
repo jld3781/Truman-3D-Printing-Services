@@ -1,13 +1,11 @@
-Project ID	Username	Project Name	Project Link	Status	Weight (g)	Color	Comments
+Project ID	Username	Project Name	Project Link	Status	Weight	Color	Comments
 1	jld3781	First Project	http://someaddress.com	Waiting	15	Yellow	my comment!
-2	jld3781	asfgasd	link	Printing	546	Purple	asdfsd
+2	jld3781	asfgasd	link	Waiting	546	Purple	asdfsd
 3	jld3781	fdsaf	link	Waiting	213	Brown	fdsa
-4	jld3781	asdf	http://someaddress.com	Completed	50	Orange	6541asdf
-5	jld3781	asdf	link	On Hold	55	White	frg
+4	jld3781	asdf	http://someaddress.com	Waiting	50	Orange	6541asdf
+5	jld3781	asdf	link	Waiting	55	White	frg
 6	jld3781	lkj	link	Waiting	65	Yellow	kjn
 7	jld3781	5454	link	Waiting	2	Blue	,lk
 8	jld3781	asdfsad	link	Waiting	4	Green	asfasd
-9	jld3781	fdgsf	link	Completed	4	Green	sfd
+9	jld3781	fdgsf	link	Waiting	4	Green	sfd
 10	jld3781	asdf	link	Waiting	456	Blue	asdf
-Project ID	test_username	123	234	Waiting	234	Yellow	234
-Project ID	test_username	234	234	Waiting	234	Yellow	234
