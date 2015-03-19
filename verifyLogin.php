@@ -19,13 +19,10 @@
           preg_match( '|^\S+$|', $_POST['password'] )):
 
         foreach( $lines as $line ):
-          //$oneline = explode( "\t", $line);
           list( $username, $password, , , $firstname, $lastname, , $aflag) = explode( "\t", $line );
-          //$currentUserName = $oneline[0];
-          //$currentPass = $oneline[1];
           if( ($_POST['username'] == $username) && 
             (password_verify( $_POST['password'], $password ))):
-            $_SESSION['username'] =  $currentUserName;
+            $_SESSION['username'] =  $username;
             $_SESSION['loggedin'] = true;
             $_SESSION['firstname'] = $firstname;
             $_SESSION['lastname'] = $lastname;
