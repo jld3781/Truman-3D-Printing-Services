@@ -4,13 +4,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
 
-define( 'DEFINITION_FILENAME', 'users.txt' );
+define( 'USER_FILENAME', 'users.txt' );
 $error_msg = '';
-$loggedin = true;
-$alreadyTaken=false;
-$accountCreateTried=false;
-$username = null;
-$filename = DEFINITION_FILENAME;
+$loggedin = isset($_SESSION['loggedin']);
 ?>
 
 <!DOCTYPE html>
@@ -19,38 +15,54 @@ $filename = DEFINITION_FILENAME;
     <meta charset="utf-8" />
     <meta name="author" content="Jessica, Sam, Jimmy" />
     <link rel="stylesheet" href="style.css" />
-    <title>Manage Account</title>
+    <title>View Account Details</title>
   </head>
 
   <body>
     <?php include( 'nav.php' ); ?>
     <section>
-    <?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true):?>
+    <?php if($loggedin):
+      $lines = file( USER_FILENAME, FILE_IGNORE_NEW_LINES );
+      $accountDetails = null;
+      foreach( $lines as $line ):
+        $oneline = explode( "\t", $line);
+        $currentUserName = $oneline[0];
+        if( $_SESSION['username'] === $currentUserName):
+          $accountDetails = $oneline;
+        endif;
+      endforeach;
+      ?>
       <p>
-        First name: <?=$_SESSION['firstname'];?>
+        Username: <?= $accountDetails[0] ?>
+      <p>
+        First name: <?= $accountDetails[4] ?>
       </p>
       <p>
-        Last name: <?=$_SESSION['lastname'];?>
+        Last name: <?= $accountDetails[5] ?>
       </p>
       <p>
-        Student ID: <?=$_SESSION['lastname'];?>
+        Student ID: <?= $accountDetails[3] ?>
       </p>
       <p>
-        Email: <?=$_SESSION['lastname'];?>
+        Email: <?= $accountDetails[2] ?>
       </p>
       <p>
-        Phone Number: <?=$_SESSION['lastname'];?>
+        Phone Number: <?= $accountDetails[6] ?>
+      </p>
+      <p>
+        <a href="manageAccount.php">Edit Profile</a>
+        <a href="editPassword.php">Change Password</a>
       </p>
 
     <?php else:?>
       <p>
-        You need to login to view your profile.
+        You need to log in to view your profile.
       </p>
     <?php endif; ?>
-    </section>
-    <p>
-      <a href="home.php">Back To Home Page</a>
-    </p>
+     <p>
+       <a href="home.php">Back To Home Page</a>
+     </p>
+   </section>
   </body>
 </html>
 
