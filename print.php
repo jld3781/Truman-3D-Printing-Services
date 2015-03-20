@@ -32,14 +32,16 @@
           <label for="projectName" title="Create a name for your project.">
             Project Name
           </label>
-          <input type="text" id="projectName" name="projectName" required />
+          <input type="text" id="projectName" name="projectName" 
+                   pattern="^[a-zA-Z][a-zA-Z0-9_-]+$" required />
         </fieldset>
        
        <fieldset>
           <label for="projectLink" title="Provide a link to your project file.">
             Project Link
           </label>
-          <input type="text" id="projectLink" name="projectLink" required />
+          <input type="text" id="projectLink" name="projectLink" 
+                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required />
         </fieldset>
         
         <fieldset>
@@ -47,7 +49,8 @@
           title="Enter the weight(in grams) for your project to be printed at.">
             Weight (g)
           </label>
-          <input type="number" id="weight" name="weight" required />
+          <input type="number" id="weight" name="weight" min="0" max="100" 
+                  required />
         </fieldset>
         
         <fieldset>

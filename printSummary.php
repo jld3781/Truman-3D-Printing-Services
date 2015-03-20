@@ -21,7 +21,8 @@
   <body>
     <?php
       session_start();
-      $_SESSION['projectName'] = $_POST['projectName'];
+
+      $_SESSION['projectName'] = htmlspecialchars($_POST['projectName']);
       $_SESSION['projectLink'] = $_POST['projectLink'];
       $_SESSION['weight'] = $_POST['weight'];
       $_SESSION['color'] = $_POST['color'];
