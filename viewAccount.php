@@ -20,7 +20,7 @@ $loggedin = isset($_SESSION['loggedin']);
 
   <body>
     <?php include( 'nav.php' ); ?>
-    <section>
+    <section class="maincontent">
     <?php if($loggedin):
       $lines = file( USER_FILENAME, FILE_IGNORE_NEW_LINES );
       $accountDetails = null;

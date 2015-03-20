@@ -62,7 +62,7 @@ endif;
 
   <body>
     <?php include( 'nav.php' ); ?>
-    <section>
+    <section class="maincontent">
     <?php if( $loggedin ): 
       $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
       $accountDetails = null;

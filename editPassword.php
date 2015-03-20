@@ -61,7 +61,7 @@ endif;
 
   <body>
     <?php include( 'nav.php' ); ?>
-    <section>
+    <section class="maincontent">
     <?php if( $loggedin ): ?>
       <p>
         <?= $error_msg ?>
