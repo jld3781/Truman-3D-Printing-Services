@@ -87,6 +87,9 @@
       </p>
     
     <?php else: ?>
+      <h2>
+        Create An Account
+      </h2>
     
       <form method="post" action="accountCreation.php">
         <fieldset>
