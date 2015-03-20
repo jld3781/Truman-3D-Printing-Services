@@ -1,5 +1,5 @@
  <?php
-//Samuel Livingston - Milestone 2
+//Jimmy Sorsen & Samuel Livingston
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
