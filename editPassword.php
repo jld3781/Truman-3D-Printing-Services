@@ -11,6 +11,7 @@ $loggedin = isset( $_SESSION['loggedin'] );
 if( $loggedin && isset($_POST['submit'])):
   if( isset($_POST['oldpassword']) &&
       isset($_POST['newpassword']) &&
+      preg_match( '%$\S{5,}^%', $_POST['newpassword'] ) &&
       isset($_POST['retypepassword']) ):
     if( $_POST['newpassword'] === $_POST['retypepassword'] ):
       if( preg_match( '|^\S+$|', $_POST['newpassword'])):
