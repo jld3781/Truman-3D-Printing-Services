@@ -19,19 +19,19 @@ endif;
   <?php else:?>
     <form action="verifyLogin.php" method="post">
       <fieldset>
-        <label for="username">Username</label>
+        <label for="navusername">Username</label>
         <input type="text" pattern="\w+" required="required" 
                name="username"
                placeholder="Username" 
-               id="username"/>
+               id="navusername"/>
         <a href="accountCreation.php" class="loginheader">Create Account</a>
        </fieldset>
        
        <fieldset>
-        <label for="password">Password</label>
+        <label for="navpassword">Password</label>
         <input type="password" required="required" name="password"
                placeholder="Password" pattern="[^ ]{5,}" 
-               id="password"/>
+               id="navpassword"/>
         <a href="forgotpassword.php" class="loginheader">Forgot Password?</a>
        </fieldset>
        
