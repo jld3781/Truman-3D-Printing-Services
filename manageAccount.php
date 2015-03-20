@@ -10,11 +10,16 @@ $loggedin = isset( $_SESSION['loggedin'] );
 
 if( $loggedin && isset($_POST['submit'])):
   if( isset($_POST['firstname']) && 
+      preg_match( '%$\w^%', $_POST['firstname'] ) &&
       isset($_POST['lastname']) && 
+      preg_match( '%$\w^%', $_POST['lastname'] ) &&
       isset($_POST['studentid']) && 
+      preg_match( '%$\w^%', $_POST['lastname'] ) &&
       isset($_POST['email']) &&  
+      filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
       isset($_POST['tel']) &&
-      isset($_POST['password'])):
+      preg_match( '%$[0-9]{10,11}^%', $_POST['tel'] ) &&
+      isset($_POST['password']) ):
     $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
     $passwordmatch = false;
     file_put_contents(USERS_FILENAME, '');
@@ -24,9 +29,9 @@ if( $loggedin && isset($_POST['submit'])):
       if( $_SESSION['username'] === $currentUserName):
         $passwordmatch = password_verify($_POST['password'], $oneline[1]);
         if($passwordmatch):
-          $newline = $oneline[0]."\t".$oneline[1]."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel']."\t".$oneline[7];
-          $_SESSION['firstname']=$_POST['firstname'];
-          $_SESSION['lastname']=$_POST['lastname'];
+          $newline = $oneline[0]."\t".$oneline[1]."\t".htmlspecialchars($_POST['email'])."\t".htmlspecialchars($_POST['studentid'])."\t".htmlspecialchars($_POST['firstname'])."\t".htmlspecialchars($_POST['lastname'])."\t".htmlspecialchars($_POST['tel'])."\t".$oneline[7];
+          $_SESSION['firstname']=htmlspecialchars($_POST['firstname']);
+          $_SESSION['lastname']=htmlspecialchars($_POST['lastname']);
           file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
         else:
           file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
@@ -42,7 +47,7 @@ if( $loggedin && isset($_POST['submit'])):
       exit; 
     endif;
   else:
-    $error_msg = 'You must put data in all fields';
+    $error_msg = 'You must put valid data in all fields';
   endif;
 endif;
 ?>
@@ -81,7 +86,7 @@ endif;
               <input type="text" required="required" 
                      name="firstname" autofocus="autofocus"
                      value="<?= $accountDetails[4] ?>" 
-                     id="firstname"/>
+                     pattern="\w+" id="firstname"/>
             </p>
 
             <p>
@@ -89,7 +94,7 @@ endif;
               <input type="text" required="required" 
                      name="lastname" autofocus="autofocus"
                      value="<?= $accountDetails[5] ?>"  
-                     id="lastname"/>
+                     pattern="\w+" id="lastname"/>
             </p>
 
             <p>
@@ -97,12 +102,12 @@ endif;
               <input type="text" required="required" 
                      name="studentid" autofocus="autofocus" 
                      value="<?= $accountDetails[3] ?>"  
-                     id="studentid"/>
+                     pattern="[0-9]{9}" id="studentid"/>
             </p>
 
             <p>
               <label for="email">Email: </label>
-              <input type="text" required="required" 
+              <input type="email" required="required" 
                      name="email" autofocus="autofocus" 
                      value="<?= $accountDetails[2] ?>" 
                      id="email"/>
@@ -110,7 +115,7 @@ endif;
 
             <p>
               <label for="tel">Phone Number: </label>
-              <input type="text" required="required" 
+              <input type="tel" required="required" 
                      name="tel" autofocus="autofocus" 
                      value="<?= $accountDetails[6] ?>"  
                      id="tel"/>
@@ -118,9 +123,10 @@ endif;
 
             <p>
               <label for="password">Password: </label>
-              <input type="password" required="required" name="password"
-                     pattern="[^ ]{5,}" 
-                     placeholder="Enter password to submit" id="password"/>
+              <input type="password" required="required" 
+                     name="password" pattern="[^ ]{5,}" 
+                     placeholder="Enter password to submit" 
+                     id="password"/>
             </p>
 
             <p>

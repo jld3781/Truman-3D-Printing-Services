@@ -9,15 +9,20 @@
   if(!$loggedin):
     if(isset($_POST['submit'])):
       if(isset($_POST['firstname']) && 
+         preg_match( '%$\w^%', $_POST['firstname'] ) &&
          isset($_POST['lastname']) && 
+         preg_match( '%$\w^%', $_POST['lastname'] ) &&
          isset($_POST['studentid']) && 
-         isset($_POST['email']) &&  
+         preg_match( '%$[0-9]{9}^%', $_POST['studentid'] ) &&
+         isset($_POST['email']) && 
+         filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
          isset($_POST['tel']) &&
+         preg_match( '%$[0-9]{10,11}^%', $_POST['tel'] ) &&
          isset($_POST['username']) &&
+         preg_match( '%$\w+^%', $_POST['username'] ) &&
          isset($_POST['password']) &&
+         preg_match( '%$\S{5,}^%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
-        $firstname = $_POST['firstname'];
-        $lastname = $_POST['lastname'];
         $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
         $alreadytaken = false;
         foreach( $lines as $line ):
@@ -38,8 +43,8 @@
               file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
               $_SESSION['username'] = $_POST['username'];
               $_SESSION['loggedin'] = true;
-              $_SESSION['firstname'] = $firstname;
-              $_SESSION['lastname'] = $lastname;
+              $_SESSION['firstname'] = $_POST['firstname'];
+              $_SESSION['lastname'] = $_POST['firstname'];
               header( 'Location: accountCreated.php' );
               exit;
             else:
@@ -52,7 +57,7 @@
           $error_msg = 'Username already taken';
         endif;
       else:
-        $error_msg = 'All fields must be filled out';
+        $error_msg = 'All fields must be filled out with valid data';
       endif;
     endif;
   endif;
@@ -96,23 +101,27 @@
         <fieldset>
           <label for="studentid">Student ID</label>
           <input type="text" id="studentid" name="studentid"
+                 placeholder="000000000"
                  pattern="[0-9]{9}" required />
         </fieldset>
         
         <fieldset>
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="email" name="email"
+                 placeholder="example@example.com" required />
         </fieldset>
         
         <fieldset>
           <label for="tel">Phone</label>
           <input type="tel" id="tel" name="tel"
+                 placeholder="Just numbers"
                  pattern="[0-9]{10,11}" required />
         </fieldset>
         
         <fieldset>
           <label for="username">Username</label>
           <input type="text" id="username" name="username"
+                 placeholder="Letters, numbers, and _"
                  pattern="\w+" required />
         </fieldset>
         
