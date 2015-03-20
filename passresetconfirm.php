@@ -5,13 +5,16 @@
   ini_set('display_errors', '1');
   define('USERS_FILENAME', 'users.txt');
   $loggedin = isset( $_SESSION['loggedin']);
-  $error_msg = '';
+  $msg = "An email has been sent to the email account attached to the username
+         you provided. Please enter the 5 digit code given in that email in the
+         space below.";
   $resetcode = 0;
 
   if(!$loggedin):
     if(isset($_POST['submit'])):
       if(isset($_POST['resetcode'])): //Handle reset code
         $resetcode = $_POST['resetcode'];
+        $msg = "Now please enter your new password.";
 
       elseif(isset($_POST['newpassword']) && //Handle new passwords
              isset($_POST['retypepassword'])):
@@ -33,10 +36,10 @@
             endforeach;
             header('Location: passchangesuccess.php');
           else:
-            $error_msg = 'New password contains illegal characters';
+            $msg = 'New password contains illegal characters';
           endif;
         else:
-          $error_msg = 'New passwords did not match';
+          $msg = 'New passwords did not match, please re-enter the 5 digit code to try again.';
         endif;
 
 
@@ -60,7 +63,7 @@
     ?>
     
     <section class="maincontent">
-    <?= $error_msg ?>
+    <?= $msg?>
     <?php if($loggedin): ?>
     
       <p>
@@ -93,9 +96,6 @@
 
     <?php else: ?>
     
-      <p>An email has been sent to the email account attached to the username
-         you provided. Please enter the 5 digit code given in that email in the
-         space below.</p>
       <form method="post" action="passresetconfirm.php">
         <fieldset>
           <label for="resetcode">5 Digit Code</label>

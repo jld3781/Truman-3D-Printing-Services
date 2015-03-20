@@ -9,19 +9,19 @@
   if(!$loggedin):
     if(isset($_POST['submit'])):
       if(isset($_POST['firstname']) && 
-         preg_match( '%$\w^%', $_POST['firstname'] ) &&
+         //preg_match( '%$\w^%', $_POST['firstname'] ) &&
          isset($_POST['lastname']) && 
-         preg_match( '%$\w^%', $_POST['lastname'] ) &&
+         //preg_match( '%$\w^%', $_POST['lastname'] ) &&
          isset($_POST['studentid']) && 
-         preg_match( '%$[0-9]{9}^%', $_POST['studentid'] ) &&
+         //preg_match( '%$[0-9]{9}^%', $_POST['studentid'] ) &&
          isset($_POST['email']) && 
-         filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
+         //filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
          isset($_POST['tel']) &&
-         preg_match( '%$[0-9]{10,11}^%', $_POST['tel'] ) &&
+         //preg_match( '%$[0-9]{10,11}^%', $_POST['tel'] ) &&
          isset($_POST['username']) &&
-         preg_match( '%$\w+^%', $_POST['username'] ) &&
+         //preg_match( '%$\w+^%', $_POST['username'] ) &&
          isset($_POST['password']) &&
-         preg_match( '%$\S{5,}^%', $_POST['password'] ) &&
+         //preg_match( '%$\S{5,}^%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
         $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
         $alreadytaken = false;
@@ -45,6 +45,7 @@
               $_SESSION['loggedin'] = true;
               $_SESSION['firstname'] = $_POST['firstname'];
               $_SESSION['lastname'] = $_POST['firstname'];
+              $_SESSION['aflag'] = 0;
               header( 'Location: accountCreated.php' );
               exit;
             else:
