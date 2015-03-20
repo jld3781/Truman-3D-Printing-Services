@@ -107,7 +107,7 @@ endif;
         ?>
           <section>
             <h1>Access Denied</h1>
-            <p>Sorry, you must be an admin to access this page.</p>
+            <h2>Sorry, you must be an admin to access this page.</h2>
           </section>
         <?php else:
             header('Location: login.php');
