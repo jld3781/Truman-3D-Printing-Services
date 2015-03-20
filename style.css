@@ -10,14 +10,16 @@ body {
 header {
   background-color: #5b187e;
   color: white;
-  font-size: 40px;
-  padding: 20px;
+  font-size: 30px;
+  padding: 15px 55px;
   border-bottom: 2px solid white;
+  overflow: auto;
 }
 
 nav {
   font-size: 14px;
   background-color: #555;
+  clear:both;
 }
 
 nav ul {
@@ -59,21 +61,64 @@ aside {
   margin: 5px;
 }
 
-#loginheader{
-  position: absolute;
-  top: -10px;
-  right: 20px;
+#loginheader {
+  float: right;
   color: white;
+  font-size: 13px;
+  display: block;
+  margin-top: -5px;
+}
+
+#loginheader form > fieldset > label, #loginheader form > fieldset > input{
+  display: block;
+}
+
+#loginheader form > fieldset > input{
+  border: 1px solid #8b38ae;
+  padding: 5px;
+}
+
+#loginheader fieldset {
+  display: inline;
+  padding: 0px;
+}
+
+#loginheader form > button {
+  background-color: #7b289e;
+  color: white;
+  border: 1px solid #8b38ae;
+  padding: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#loginheader form > button:hover{
+  background-color: #8b38be;
+  color: white;
+  border: 1px solid #8b38ae;
 }
 
 a.loginheader{
 color: white;
+text-decoration: none;
+display: block;
 }
 
-p.loginheader
-{
-  margin-top: -12px;
+a.loginheader:hover {
+  text-decoration: underline;
 }
+
+a.loggedinheader{
+color: white;
+text-decoration: none;
+display: inline;
+padding: 0px 5px;
+}
+
+a.loggedinheader:hover {
+  text-decoration: underline;
+}
+
 
 aside h2 {
   margin-top: 0px;

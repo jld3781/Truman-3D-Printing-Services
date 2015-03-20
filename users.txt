@@ -1,3 +1,4 @@
+Username	Password	Email	Student ID	First Name	Last Name	Phone	Admin Flag
 jfs1744	$2y$10$ASSTqS0yged.srk8ESwzmu8RjI7cmezFBF083a3mwOaQwDLI.hxLy	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
 newuser	$2y$10$QS.XsHdUzDNM7Gys2QToN.Qi71AddNnBtSWV31Thxa2KymzKKh6Gi	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
 neweruser	$2y$10$GysiiWN1OGHphn0ov6yKH.iXMZ7q2wIVLbvdmeCw8q2A/MoyiUThS	jfs1744@truman.edu	000755259	James	Sorsen	3144880298	0
@@ -7,3 +8,5 @@ jbeck	$2y$10$KeZ7BWHavInV1d0UG4IvwO.THREl7fYr4oLwz.d.WgSD5FaOLKFnu	jbeck@truman.
 jbeck1	$2y$10$rKQ0RH/tNEJDz.kzRi9Z4.Jlxk.SFHKO3zcFSXfig1TcUacQSSn9m	jbeck@truman.edu	000555555	John	Beck	5555555555	0
 jld3781	$2y$10$qno1W9qOBB1nxRJnog0GBuBQ4C4RQinLbj2w5KaciTqnx6ImRdlde	jld3781@truman.edu	000713731	Jessica	DiMariano	3145935436	0
 test	$2y$10$DmZGKr1Zneh7cjUSi4m1Bu7Hvxe6cDHn/doPUKplqswQ2ZJSoOYLC	jld3781@truman.edu	000111222	test	test	3145935436	0
+stella	$2y$10$Y9MLL3JxCXbxrGvdBd8xfu7KszuKt6S0IeUraqxTBqE6ltFJNpIWG	stella@cat.com	000123456	Stella	CrazyCat	1231231234	0
+aer	$2y$10$dqVwY4a7gETs0ysbFpesh.cl0nO2n/nsuQbqT1CGLGfQY6YXbl/0C	cat@a	000000000	Stellla_23524	aq4tgfg	9999888999	0

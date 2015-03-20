@@ -26,7 +26,7 @@ if(isset($_POST['status']) && isset($_POST['linenum'])):
   $linenum = $_POST['linenum'];
   $status = $_POST['status'];
   $lines = get_a_file(PRINTJOB_DATABASE);
-  $linecount=0;
+  $linecount = 0;
   foreach($lines as $line):
     if( $linenum == $linecount):
       $oneline = explode( "\t", $line );
@@ -110,6 +110,7 @@ endif;
             <p>Sorry, you must be an admin to access this page.</p>
           </section>
         <?php else:
+            $_SESSION['history'] = "Admin";
             header('Location: login.php');
           endif; 
         ?>

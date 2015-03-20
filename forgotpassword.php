@@ -15,15 +15,12 @@
         $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
 
         foreach( $lines as $line ):
-          $oneline = explode( "\t", $line );
-          $currentUserName = $oneline[0];
+          list( $currentUserName, ,$email, , , , ,) = explode( "\t", $line );
           if( $username === $currentUserName):
-            $email = $oneline[2];
-
             $to = "$email";
             $subject = "Password Reset for Truman 3D Printing Services";
-            $min=10000;
-            $max=99999;
+            $min = 10000;
+            $max = 99999;
             $code = rand ($min,$max);
             $message = "Your password reset code is: $code";
             // Always set content-type when sending HTML email
@@ -31,7 +28,7 @@
             $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
             // More headers
             //$headers = 'From: <Truman3DPrinting@gmail.com>' . "\r\n";
-            mail($to,$subject,$message,$headers);
+            mail( $to, $subject, $message, $headers );
             $_SESSION['code'] = $code;
             $_SESSION['username'] = $username;
             header('Location: passresetconfirm.php');
@@ -64,7 +61,8 @@
     <?php if($loggedin): ?>
     
       <p>
-        You are already logged in as <?=$_SESSION['username']?>. <a href="home.php">Home</a>
+        You are already logged in as <?=$_SESSION['username']?>.
+        <a href="home.php">Home</a>
       </p>
     
     <?php else: ?>

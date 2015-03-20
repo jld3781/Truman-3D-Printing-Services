@@ -49,7 +49,7 @@
           title="Enter the weight(in grams) for your project to be printed at.">
             Weight (g)
           </label>
-          <input type="number" id="weight" name="weight" min="0" max="100" 
+          <input type="number" id="weight" name="weight" min="0" max="50000" 
                   required />
         </fieldset>
         
@@ -85,6 +85,7 @@
 </html>
 <?php
   else:
+    $_SESSION['history'] = "Print";
     header('Location: login.php');
   endif;
 ?>

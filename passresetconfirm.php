@@ -14,7 +14,11 @@
     if(isset($_POST['submit'])):
       if(isset($_POST['resetcode'])): //Handle reset code
         $resetcode = $_POST['resetcode'];
-        $msg = "Now please enter your new password.";
+        if($resetcode == $_SESSION['code']):
+          $msg = "Now please enter your new password.";
+        else:
+          $msg = "Reset code is incorrect or has expired.";
+        endif;
 
       elseif(isset($_POST['newpassword']) && //Handle new passwords
              isset($_POST['retypepassword'])):

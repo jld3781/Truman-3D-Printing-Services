@@ -21,6 +21,10 @@
     <?php else:?>
       <h1>Sign In</h1>
       
+      <?php if( isset($_SESSION['error_msg']) ): ?>
+        <p><?= $_SESSION['error_msg'] ?></p>
+      <?php endif; ?>
+      
       <form method="post" action="verifyLogin.php">
         <fieldset>
           <label for="username">Username</label>

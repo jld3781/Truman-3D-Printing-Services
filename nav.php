@@ -6,42 +6,46 @@ if(session_id() == '' || !isset($_SESSION)):
 endif;
 ?>
 
-<header>Truman 3D Printing Services</header>
 
+  <header>
   <div id="loginheader">
   <?php if( isset($_SESSION['loggedin'] )): ?>
     <p>
       You're logged in as: <?= $_SESSION['firstname']?> 
         <?=$_SESSION['lastname']?>
-     </p>
-     <p>
-       <a href="viewAccount.php" class="loginheader">Profile</a>
-       <a href="logout.php" class="loginheader">Logout</a>
+       <a href="viewAccount.php" class="loggedinheader">Profile</a>
+       <a href="logout.php" class="loggedinheader">Logout</a>
      </p>
   <?php else:?>
     <form action="verifyLogin.php" method="post">
-      <p>
-        Login
-        <label for="username"></label>
+      <fieldset>
+        <label for="username">Username</label>
         <input type="text" pattern="\w+" required="required" 
                name="username"
                placeholder="Username" 
                id="username"/>
-
-        <label for="password"></label>
+        <a href="accountCreation.php" class="loginheader">Create Account</a>
+       </fieldset>
+       
+       <fieldset>
+        <label for="password">Password</label>
         <input type="password" required="required" name="password"
                placeholder="Password" pattern="[^ ]{5,}" 
                id="password"/>
-        <button type="submit" name="submit">Submit</button>
-      </p>
+        <a href="forgotpassword.php" class="loginheader">Forgot Password?</a>
+       </fieldset>
+       
+        <button type="submit" name="submit">Sign In</button>
     </form>
-    <p class="loginheader">
-      <a href="accountCreation.php" class="loginheader">Create Account</a>
-      <a href="forgotpassword.php" class="loginheader">Forgot Password?</a>
-    </p>
+ 
+      
+      
+
 
   <?php endif; ?>
   </div>
+    Truman 3D Printing Services
+  </header>
     
   <nav>
     <ul>

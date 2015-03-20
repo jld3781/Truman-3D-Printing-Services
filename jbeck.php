@@ -13,16 +13,19 @@
   <body>
     <?php include( 'nav.php' ); ?>
     <section class="maincontent">
-      <h1>Hello!</h1>
-      <p>You can login as an admin with</p>
-      <p>Username: jbeck</p>
-      <p>Password: pass5</p>
-    </section>
-    <section class="maincontent">
-      <p>You can login as a regular user with</p>
-      <p>Username: jbeck1</p>
-      <p>Password: pass5</p>
-      <p>Enjoy!</p>
+      <h1>Hi, Dr. Beck!</h1>
+      <p>
+        You can login as an <em>admin</em> with
+        <label>Username:</label> jbeck
+        <label>Password:</label> pass5
+      </p>
+    
+      <p>
+        You can login as a <em>regular user</em> with
+        <label>Username:</label> jbeck1
+        <label>Password:</label> pass5
+        Enjoy!
+      </p>
     </section>
   </body>
 </html>
