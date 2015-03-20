@@ -10,15 +10,15 @@ $loggedin = isset( $_SESSION['loggedin'] );
 
 if( $loggedin && isset($_POST['submit'])):
   if( isset($_POST['firstname']) && 
-      preg_match( '%$\w^%', $_POST['firstname'] ) &&
+      preg_match( '%^\w+$%', $_POST['firstname'] ) &&
       isset($_POST['lastname']) && 
-      preg_match( '%$\w^%', $_POST['lastname'] ) &&
+      preg_match( '%^\w+$%', $_POST['lastname'] ) &&
       isset($_POST['studentid']) && 
-      preg_match( '%$\w^%', $_POST['lastname'] ) &&
+      preg_match( '%^\w+$%', $_POST['lastname'] ) &&
       isset($_POST['email']) &&  
       filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
       isset($_POST['tel']) &&
-      preg_match( '%$[0-9]{10,11}^%', $_POST['tel'] ) &&
+      preg_match( '%^[0-9]{10,11}$%', $_POST['tel'] ) &&
       isset($_POST['password']) ):
     $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
     $passwordmatch = false;
