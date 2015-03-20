@@ -32,7 +32,7 @@
           <input type="password" id="password" name="password" required />
         </fieldset>
         
-        <button type="submit" name="login">Sign In</button>
+        <button type="submit" name="submit">Sign In</button>
       </form>
       
       <a href="accountCreation.php">Create a new account</a>

@@ -57,7 +57,7 @@ $loggedin = isset($_SESSION['loggedin']);
 
     <?php else:?>
       <p>
-        You need to log in to view your profile.
+        You need to <a href="login.php">log in</a> to view your profile.
       </p>
     <?php endif; ?>
      <p>

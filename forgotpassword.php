@@ -19,6 +19,22 @@
           $currentUserName = $oneline[0];
           if( $username === $currentUserName):
             $email = $oneline[2];
+
+            $to = "$email";
+            $subject = "Password Reset for Truman 3D Printing Services";
+            $min=10000;
+            $max=99999;
+            $code = rand ($min,$max);
+            $message = "Your password reset code is: $code";
+            // Always set content-type when sending HTML email
+            $headers = "MIME-Version: 1.0" . "\r\n";
+            $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+            // More headers
+            //$headers = 'From: <Truman3DPrinting@gmail.com>' . "\r\n";
+            mail($to,$subject,$message,$headers);
+            $_SESSION['code'] = $code;
+            $_SESSION['username'] = $username;
+            header('Location: passresetconfirm.php');
           endif;
         endforeach;
       
