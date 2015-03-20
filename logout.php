@@ -1,5 +1,5 @@
  <?php
-//Samuel Livingston - Assignment 304
+//Samuel Livingston
 session_start();
 
 $_SESSION = array();
