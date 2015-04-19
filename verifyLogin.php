@@ -25,7 +25,7 @@
         $username = $_POST['username'];
         $query = "SELECT Username, FirstName, LastName, AdminFlag, PasswordHash
                   FROM USER
-                  WHERE Email = :username;"
+                  WHERE Email = :username;";
 
         $statement = $db->prepare( $query );
         $statement->bindParam( ':email', $email, PDO::PARAM_STR );
@@ -34,7 +34,7 @@
         $result = $statement->fetchAll();
         
         if( !empty($result) &&
-            password_verify($_POST['password'], $result[0]['PasswordHash']):
+            password_verify($_POST['password'], $result[0]['PasswordHash'])):
           $_SESSION['username'] =  $username;
           $_SESSION['loggedin'] = true;
           $_SESSION['firstname'] = $result[0]['FirstName'];
@@ -58,8 +58,9 @@
       
     endif;
     $_SESSION['error_msg'] = $error_msg;
-    if( !($_SESSION['loggedin'] == true) ):
-    header( 'Location: login.php' );
+    if( !isset($_SESSION['loggedin']) ||
+        !($_SESSION['loggedin'] == true) ):
+      header( 'Location: login.php' );
     endif;
   else:
     $_SESSION['error_msg'] = $error_msg;    
