@@ -20,6 +20,40 @@
           isset( $_POST['password'] ) && 
           preg_match( '|^\S+$|', $_POST['password'] )):
 
+        require_once( 'dbconnection.php' );
+        
+        $username = $_POST['username'];
+        $query = "SELECT Username, FirstName, LastName, AdminFlag, PasswordHash
+                  FROM USER
+                  WHERE Email = :username;"
+
+        $statement = $db->prepare( $query );
+        $statement->bindParam( ':email', $email, PDO::PARAM_STR );
+        $statement->execute();
+        
+        $result = $statement->fetchAll();
+        
+        if( !empty($result) &&
+            password_verify($_POST['password'], $result[0]['PasswordHash']):
+          $_SESSION['username'] =  $username;
+          $_SESSION['loggedin'] = true;
+          $_SESSION['firstname'] = $result[0]['FirstName'];
+          $_SESSION['lastname'] = $result[0]['LastName'];
+          $_SESSION['aflag'] = $result[0]['AdminFlag'];
+          
+          
+          if( $_SESSION['history'] == "Print" ):
+            header( 'Location: print.php' );
+          elseif($_SESSION['history'] == "Admin" ):
+            header( 'Location: admin.php' );
+          else:
+            header( 'Location: home.php' );
+          endif;
+        else:
+          $error_msg = 'Username-password pair is invalid';
+        endif;
+
+
         foreach( $lines as $line ):
           list( $username, $password, , , $firstname, $lastname, , $aflag) = 
                   explode( "\t", $line );
@@ -45,6 +79,10 @@
           endif;
           
         endforeach;
+        
+        
+        
+        
         
       else:
         $error_msg = 'You must enter a valid username-password pair';
