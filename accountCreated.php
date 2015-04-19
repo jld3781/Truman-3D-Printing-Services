@@ -11,10 +11,7 @@ $loggedin = isset($_SESSION['loggedin']);
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <?php
-      include('nav.php');
-      define( 'AVAILABLE_COLORS', 'colors.txt' );
-    ?>
+    <?php include('nav.php'); ?>
     
     <section class="maincontent">
     <?php if($loggedin): ?>

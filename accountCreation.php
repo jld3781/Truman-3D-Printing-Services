@@ -1,11 +1,15 @@
 <?php
   # Jimmy Sorsen
   session_start();
+  
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
-  define('USERS_FILENAME', 'users.txt');
+  
+  require_once('dbconnection.php');
+  
   $loggedin = isset( $_SESSION['loggedin']);
   $error_msg = '';
+  
   if(!$loggedin):
     if(isset($_POST['submit'])):
       if(isset($_POST['firstname']) && 
@@ -23,15 +27,16 @@
          isset($_POST['password']) &&
          preg_match( '%^\S{5,}$%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
-        $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-        $alreadytaken = false;
-        foreach( $lines as $line ):
-          $oneline = explode( "\t", $line );
-          $currentUserName = $oneline[0];
-          if( $_POST['username'] === $currentUserName):
-            $alreadytaken=true;
+        
+          $sql = 'SELECT * FROM USER WHERE Email ="'. $_POST['email'] .'"';
+          $statement = $db->prepare($sql);
+          $statement->execute();
+          $rows = $statement->fetchAll();
+          
+          $alreadytaken = false;
+          if( empty($rows) ):
+            $alreadytaken = true;
           endif;
-        endforeach;
         if(!$alreadytaken):
           if(preg_match( '|^\w+$|', $_POST['username']) &&
              preg_match( '|^\S+$|', $_POST['password']) &&
@@ -39,8 +44,20 @@
             if($_POST['password'] === $_POST['retypepassword']):
               #add new account and start session
               $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-              $newline = $_POST['username']."\t".$hashedpassword."\t".$_POST['email']."\t".$_POST['studentid']."\t".$_POST['firstname']."\t".$_POST['lastname']."\t".$_POST['tel']."\t".'0';
-              file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
+              
+              $sql = "INSERT INTO USER ( Email, FirstName, LastName, 
+                    PhoneNumber, StudentFlag, AdminFlag, PasswordHash) 
+                    VALUES (':email', ':firstname', ':lastname', ':tel', '1', 
+                    '0', ':password')";
+              $stmt = $db->prepare($sql);
+              $stmt->bindParam(':email' => $_POST['email'],
+                ':firstname' => $_POST['firstname'],
+                ':lastname' => $_POST['lastname'],
+                ':tel' => $_POST['tel'],
+                ':password' => $hashedpassword
+              );
+              $stmt->execute();
+                             
               $_SESSION['username'] = $_POST['username'];
               $_SESSION['loggedin'] = true;
               $_SESSION['firstname'] = $_POST['firstname'];
@@ -73,10 +90,7 @@
   </head>
   
   <body>
-    <?php
-      include('nav.php');
-      define( 'AVAILABLE_COLORS', 'colors.txt' );
-    ?>
+    <?php include('nav.php'); ?>
     
     <section class="maincontent">
     <?= $error_msg ?>
