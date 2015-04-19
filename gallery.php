@@ -39,11 +39,10 @@
     
     <aside>
       <h2>Filter</h2>
-      <button type="submit" value="1">Most Recent</button>
-      <button type="submit" value="1">Most Popular</button>
-      <button type="submit" value="1">Featured</button>
-      <button type="submit" value="1">Alphabetical</button>
-      <p>Buttons have no functionality until javascript implementation</p>
+      <button type="submit" value="1" name="Recent">Most Recent</button>
+      <button type="submit" value="1" name="Popular">Most Popular</button>
+      <button type="submit" value="1" name="Featured">Featured</button>
+      <button type="submit" value="1" name="Alphabetical">Alphabetical</button>
     </aside>
     
     <section id="gallery">
