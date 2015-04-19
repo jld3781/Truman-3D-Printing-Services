@@ -52,38 +52,6 @@
         else:
           $error_msg = 'Username-password pair is invalid';
         endif;
-
-
-        foreach( $lines as $line ):
-          list( $username, $password, , , $firstname, $lastname, , $aflag) = 
-                  explode( "\t", $line );
-                  
-          if( ($_POST['username'] == $username) && 
-            (password_verify( $_POST['password'], $password ))):
-            $_SESSION['username'] =  $username;
-            $_SESSION['loggedin'] = true;
-            $_SESSION['firstname'] = $firstname;
-            $_SESSION['lastname'] = $lastname;
-            $_SESSION['aflag'] = $aflag;
-            
-            if( $_SESSION['history'] == "Print" ):
-              header( 'Location: print.php' );
-            elseif($_SESSION['history'] == "Admin" ):
-              header( 'Location: admin.php' );
-            else:
-              header( 'Location: home.php' );
-            endif;
-            
-          else:
-            $error_msg = 'Username-password pair is invalid';
-          endif;
-          
-        endforeach;
-        
-        
-        
-        
-        
       else:
         $error_msg = 'You must enter a valid username-password pair';
       endif;
