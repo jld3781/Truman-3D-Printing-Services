@@ -3,6 +3,7 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
   session_start();
+  require_once('dbconnection.php');
   if( isset( $_SESSION['loggedin'] ) && 
              $_SESSION['loggedin'] == true):
       
@@ -19,7 +20,6 @@
   <body>
     <?php
       include('nav.php');
-      define( 'AVAILABLE_COLORS', 'colors.txt' );
     ?>
     
     <section class="maincontent">
@@ -52,20 +52,45 @@
           <input type="number" id="weight" name="weight" min="0" max="50000" 
                   required />
         </fieldset>
+
+        <fieldset>
+          <label for="material">Material</label>
+          <select name="material" id="material" required>
+            <option value="" selected="selected" 
+                      disabled="disabled">Choose a Material</option>
+            <?php
+              $sql = "SELECT Type FROM FILAMENT GROUP BY Type;";
+              $stmt = $db -> prepare($sql);
+              $stmt->execute();
+              $rows = $stmt->fetchAll();
+              foreach($rows as $row):
+                $material = $row['Type'];
+            ?>
+                <option value="<?=$material?>"><?=$material?></option>
+            <?php 
+              endforeach;
+            ?>
+              
+          </select>
+        </fieldset>
+
+
         
         <fieldset>
           <label for="color">Color</label>
           <select name="color" id="color" required>
-            
+            <option value="" selected="selected" 
+                      disabled="disabled">Choose a Color</option>
+            <?php
+              $sql = "SELECT Color FROM FILAMENT GROUP BY Color;";
+              $stmt = $db -> prepare($sql);
+              $stmt->execute();
+              $rows = $stmt->fetchAll();
+              foreach($rows as $row):
+                $color = $row['Color'];
+            ?>
+                <option value="<?=$color?>"><?=$color?></option>
             <?php 
-              $availableColors = file(AVAILABLE_COLORS);
-              $placeholder = array_shift($availableColors);
-              
-              echo "<option value=\"\" selected=\"selected\" 
-                      disabled=\"disabled\">$placeholder</option>";
-              foreach($availableColors as $color):
-                $color = trim($color);
-                echo "<option value=\"$color\">$color</option>";
               endforeach;
             ?>
               

@@ -11,6 +11,7 @@
   $_SESSION['projectName'] = htmlspecialchars($_POST['projectName']);
   $_SESSION['projectLink'] = htmlspecialchars($_POST['projectLink']);
   $_SESSION['weight'] = $_POST['weight'];
+  $_SESSION['material'] = $_POST['material'];
   $_SESSION['color'] = $_POST['color'];
   $_SESSION['comments'] = $comments;
 ?>
@@ -34,6 +35,7 @@
         <li>Project Name: <?= $_SESSION['projectName'] ?></li>
         <li>Project Link: <?= $_SESSION['projectLink'] ?></li>
         <li>Weight: <?= $_SESSION['weight'] ?> grams</li>
+	<li>Material: <?= $_SESSION['material'] ?></li>
         <li>Color: <?= $_SESSION['color'] ?></li>
         <li>Comments: <?= $comments ?></li>
       </ul>
