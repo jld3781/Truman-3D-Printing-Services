@@ -14,37 +14,40 @@ if( $loggedin && isset($_POST['submit'])):
       isset($_POST['lastname']) && 
       preg_match( '%^\w+$%', $_POST['lastname'] ) &&
       isset($_POST['studentid']) && 
-      preg_match( '%^\w+$%', $_POST['lastname'] ) &&
+      preg_match( '%^[0-9]{9}$%', $_POST['studentid'] ) &&
       isset($_POST['email']) &&  
       filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
       isset($_POST['tel']) &&
       preg_match( '%^[0-9]{10,11}$%', $_POST['tel'] ) &&
       isset($_POST['password']) ):
-    $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-    $passwordmatch = false;
-    file_put_contents(USERS_FILENAME, '');
-    foreach( $lines as $line ):
-      $oneline = explode( "\t", $line);
-      $currentUserName = $oneline[0];
-      if( $_SESSION['username'] === $currentUserName):
-        $passwordmatch = password_verify($_POST['password'], $oneline[1]);
-        if($passwordmatch):
-          $newline = $oneline[0]."\t".$oneline[1]."\t".htmlspecialchars($_POST['email'])."\t".htmlspecialchars($_POST['studentid'])."\t".htmlspecialchars($_POST['firstname'])."\t".htmlspecialchars($_POST['lastname'])."\t".htmlspecialchars($_POST['tel'])."\t".$oneline[7];
-          $_SESSION['firstname']=htmlspecialchars($_POST['firstname']);
-          $_SESSION['lastname']=htmlspecialchars($_POST['lastname']);
-          file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
-        else:
-          file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
-          $error_msg = 'Incorrect password';
-        endif;
-      else:
-        file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
-      endif;
-    endforeach;
-    if($passwordmatch):
-      header( 'Location: profilechangesuccess.php' ); //Success
-      //header( 'Location: viewAccount.php' );
-      exit; 
+      
+    require_once( 'dbconnection.php' );
+    $query = "SELECT PasswordHash
+              FROM USER
+              WHERE Username = :username";
+    $statement = $db->prepare( $query );
+    $statement->bindParam( ':username', $_SESSION['username'], PDO::PARAM_STR );
+    $statement->execute();
+    $result = $statement->fetchAll();
+    
+    if(password_verify($_POST['password'], $result[0]['PasswordHash'])):
+      $update = "UPDATE USER 
+                 SET FirstName=:firstname, LastName=:lastname, StudentId=:studentid, Email=:email, PhoneNumber=:phonenumber
+                 WHERE Username=:username";
+      $statement = $db->prepare($update);
+      $statement->bindParam( ':firstname', $_POST['firstname']);
+      $statement->bindParam( ':lastname', $_POST['lastname']);
+      $statement->bindParam( ':studentid', $_POST['studentid']);
+      $statement->bindParam( ':email', $_POST['email']);
+      $statement->bindParam( ':phonenumber', $_POST['tel']);
+      $statement->bindParam( ':username', $_SESSION['username']);
+      $statement->execute();
+      $_SESSION['firstname'] = $_POST['firstname'];
+      $_SESSION['lastname'] = $_POST['lastname'];
+      header( 'Location: profilechangesuccess.php' );
+      exit;
+    else:
+      $error_msg = "Incorrect password";
     endif;
   else:
     $error_msg = 'You must put valid data in all fields';
@@ -64,15 +67,14 @@ endif;
     <?php include( 'nav.php' ); ?>
     <section class="maincontent">
     <?php if( $loggedin ): 
-      $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-      $accountDetails = null;
-      foreach( $lines as $line ):
-        $oneline = explode( "\t", $line);
-        $currentUserName = $oneline[0];
-        if( $_SESSION['username'] === $currentUserName):
-          $accountDetails = $oneline;
-        endif;
-      endforeach;
+      require_once( 'dbconnection.php' );
+      $query = "SELECT Username, FirstName, LastName, StudentId, Email, PhoneNumber, PasswordHash
+                FROM USER
+                WHERE Username = :username";
+      $statement = $db->prepare( $query );
+      $statement->bindParam( ':username', $_SESSION['username'], PDO::PARAM_STR );
+      $statement->execute();
+      $result = $statement->fetchAll();
       ?>
       <p>
         <?= $error_msg ?>
@@ -85,7 +87,7 @@ endif;
               <label for="firstname">First Name: </label>
               <input type="text" required="required" 
                      name="firstname" autofocus="autofocus"
-                     value="<?= $accountDetails[4] ?>" 
+                     value="<?= $result[0]['FirstName'] ?>" 
                      pattern="\w+" id="firstname"/>
             </p>
 
@@ -93,7 +95,7 @@ endif;
               <label for="lastname">Last Name: </label>
               <input type="text" required="required" 
                      name="lastname" autofocus="autofocus"
-                     value="<?= $accountDetails[5] ?>"  
+                     value="<?= $result[0]['LastName'] ?>"  
                      pattern="\w+" id="lastname"/>
             </p>
 
@@ -101,7 +103,7 @@ endif;
               <label for="studentid">Student ID: </label>
               <input type="text" required="required" 
                      name="studentid" autofocus="autofocus" 
-                     value="<?= $accountDetails[3] ?>"  
+                     value="<?= $result[0]['StudentId'] ?>"  
                      pattern="[0-9]{9}" id="studentid"/>
             </p>
 
@@ -109,7 +111,7 @@ endif;
               <label for="email">Email: </label>
               <input type="email" required="required" 
                      name="email" autofocus="autofocus" 
-                     value="<?= $accountDetails[2] ?>" 
+                     value="<?= $result[0]['Email'] ?>" 
                      id="email"/>
             </p>
 
@@ -117,7 +119,7 @@ endif;
               <label for="tel">Phone Number: </label>
               <input type="tel" required="required" 
                      name="tel" autofocus="autofocus" 
-                     value="<?= $accountDetails[6] ?>"  
+                     value="<?= $result[0]['PhoneNumber'] ?>"  
                      id="tel"/>
             </p>
 

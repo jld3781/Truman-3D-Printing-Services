@@ -22,33 +22,32 @@ $loggedin = isset($_SESSION['loggedin']);
     <?php include( 'nav.php' ); ?>
     <section class="maincontent">
     <?php if($loggedin):
-      $lines = file( USER_FILENAME, FILE_IGNORE_NEW_LINES );
-      $accountDetails = null;
-      foreach( $lines as $line ):
-        $oneline = explode( "\t", $line);
-        $currentUserName = $oneline[0];
-        if( $_SESSION['username'] === $currentUserName):
-          $accountDetails = $oneline;
-        endif;
-      endforeach;
+      require_once( 'dbconnection.php' );
+      $query = "SELECT Username, FirstName, LastName, StudentId, Email, PhoneNumber, PasswordHash
+                FROM USER
+                WHERE Username = :username";
+      $statement = $db->prepare( $query );
+      $statement->bindParam( ':username', $_SESSION['username'], PDO::PARAM_STR );
+      $statement->execute();
+      $result = $statement->fetchAll();
       ?>
       <h2>Your Profile</h2>
       <p>
-        Username: <?= $accountDetails[0] ?>
+        Username: <?= $result[0]['Username'] ?>
       <p>
-        First name: <?= $accountDetails[4] ?>
+        First name: <?= $result[0]['FirstName'] ?>
       </p>
       <p>
-        Last name: <?= $accountDetails[5] ?>
+        Last name: <?= $result[0]['LastName'] ?>
       </p>
       <p>
-        Student ID: <?= $accountDetails[3] ?>
+        Student ID: <?= $result[0]['StudentId'] ?>
       </p>
       <p>
-        Email: <?= $accountDetails[2] ?>
+        Email: <?= $result[0]['Email'] ?>
       </p>
       <p>
-        Phone Number: <?= $accountDetails[6] ?>
+        Phone Number: <?= $result[0]['PhoneNumber'] ?>
       </p>
       <p>
         <a href="manageAccount.php">Edit Profile</a>
