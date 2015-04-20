@@ -46,16 +46,15 @@
               $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
               
               $sql = "INSERT INTO USER ( Email, FirstName, LastName, 
-                    PhoneNumber, StudentFlag, AdminFlag, PasswordHash) 
-                    VALUES (':email', ':firstname', ':lastname', ':tel', '1', 
+                    PhoneNumber, FacultyFlag, AdminFlag, PasswordHash) 
+                    VALUES (':email', ':firstname', ':lastname', ':tel', '0', 
                     '0', ':password')";
               $stmt = $db->prepare($sql);
-              $stmt->bindParam(':email' => $_POST['email'],
-                ':firstname' => $_POST['firstname'],
-                ':lastname' => $_POST['lastname'],
-                ':tel' => $_POST['tel'],
-                ':password' => $hashedpassword
-              );
+              $stmt->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
+              $stmt->bindParam(':firstname', $_POST['firstname'], PDO::PARAM_STR);
+              $stmt->bindParam(':lastname', $_POST['lastname'], PDO::PARAM_STR);
+              $stmt->bindParam(':tel', $_POST['tel'], PDO::PARAM_STR);
+              $stmt->bindParam(':password', $hashedpassword, PDO::PARAM_STR);
               $stmt->execute();
                              
               $_SESSION['username'] = $_POST['username'];
