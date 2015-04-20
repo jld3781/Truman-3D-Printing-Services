@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
 require_once( 'dbconnection.php' );
-define('PRINTJOB_HEADERS_FILE', 'printQueueHeaders.txt' );
+define('PRINTJOB_HEADERS_FILE', 'completedPrintsHeaders.txt' );
 
 //Handles a change in job Status
 if(isset($_POST['status']) && isset($_POST['jobId'])):
@@ -36,8 +36,8 @@ endif;
                  $_SESSION['aflag'] == 'T'):
     ?>
     <section class="maincontent">
-      <h1>Printing Queue</h1>
-      <a href="admin2.php">Goto Completed/Reject Jobs</a>
+      <h1>Completed/Rejected Projects</h1>
+      <a href="admin.php">Goto the Printing Queue</a>
       <table>
         <?php
           $lines = file( PRINTJOB_HEADERS_FILE );
@@ -58,8 +58,8 @@ endif;
                       P.ProjectLink
                     FROM PRINT_JOB as PJ 
                       NATURAL JOIN PROJECT as P
-                    WHERE Status <> 'Rejected' AND Status <> 'Completed'
-                    ORDER BY SubmittedTime";
+                    WHERE Status = 'Rejected' OR Status = 'Completed'
+                    ORDER BY StopTime";
           $statement = $db->prepare( $query );
           $statement->execute();
           $result = $statement->fetchAll();
@@ -74,10 +74,9 @@ endif;
               ?><td><?=$tuples['PrinterEmail']?></td><?php
               ?><td><a href="<?=$tuples['ProjectLink']?>"><?=$tuples['ProjectName']?></td>
                 <td>
-                  <form action="admin.php" method="post">
+                  <form action="admin2.php" method="post">
                     <select name="status">
-                      <option value="<?=$tuples['Status']?>">
-                          Current: <?=$tuples['Status']?></option>
+                      <option value="<?=$tuples['Status']?>">Current: <?=$tuples['Status']?></option>
                       <option value="Waiting">Waiting</option>
                       <option value="Printing">Printing</option>
                       <option value="On Hold">On Hold</option>
@@ -89,11 +88,10 @@ endif;
                   </form>
                   </td>
                   <td><?=$tuples['Weight']?></td><?php
-                ?><td><?=$tuples['Length']?>x<?=$tuples['Width']
-                    ?>x<?=$tuples['Height']?></td><?php
                 ?><td><?=$tuples['Color']?></td><?php
                 ?><td><?=$tuples['Comment']?></td><?php
-                ?><td><?=$tuples['SubmittedTime']?></td><?php
+                ?><td><?=$tuples['StartTime']?></td><?php
+                ?><td><?=$tuples['StopTime']?></td><?php
                 $count++;
             ?></tr><?php
             endforeach;
