@@ -22,20 +22,22 @@
 
   if(empty($rows)): //IF PROJECT DOES NOT ALREADY EXIST
     //CREATE THE PROJECT
-    $sql = "INSERT INTO PROJECT (CreatorEmail, ProjectName, ProjectLink) 
-            VALUES(:creatoremail, :projectname, :projectlink)";
+    $sql = "INSERT INTO PROJECT (CreatorEmail, ProjectName, ProjectLink, Picture) 
+            VALUES(:creatoremail, :projectname, :projectlink, :picture)";
     $stmt = $db-> prepare($sql);
     $stmt->bindParam(':creatoremail', $_SESSION['email'], PDO::PARAM_STR);
     $stmt->bindParam(':projectname', $_SESSION['projectName'], PDO::PARAM_STR);
     $stmt->bindParam(':projectlink', $_SESSION['projectLink']);
+    $stmt->bindParam(':picture', $_SESSION['picture']);
     $stmt->execute();
   endif;
 
   //CREATE THE PRINT JOB
-  $sql = "INSERT INTO PRINT_JOB (PrinterEmail, CreatorEmail, ProjectName,
-           Status, Length, Width, Height, Weight, Color, Comment, MaterialType) 
+  $sql = "INSERT INTO PRINT_JOB (PrinterEmail, CreatorEmail, ProjectName, 
+            Status, Length, Width, Height, Weight, Color, Comment, 
+            MaterialType, SubmittedTime) 
           VALUES(:printeremail,:creatoremail, :projectname, :status, :length, 
-            :width, :height, :weight, :color, :comment, :materialtype);";
+            :width, :height, :weight, :color, :comment, :materialtype, NOW());";
   $stmt = $db -> prepare($sql);
   $stmt->bindParam(':printeremail', $_SESSION['email'], PDO::PARAM_STR);
   $stmt->bindParam(':creatoremail', $_SESSION['email'], PDO::PARAM_STR);

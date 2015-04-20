@@ -18,9 +18,7 @@
   </head>
   
   <body>
-    <?php
-      include('nav.php');
-    ?>
+    <?php include('nav.php'); ?>
     
     <section class="maincontent">
     
@@ -42,6 +40,14 @@
           </label>
           <input type="text" id="projectLink" name="projectLink" 
                    pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required="required" />
+        </fieldset>
+
+        <fieldset>
+          <label for="picture" title="Provide a link to a picture of your project.">
+            Project Picture URL
+          </label>
+          <input type="text" id="picture" name="picture" 
+                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" />
         </fieldset>
 
         <fieldset>
