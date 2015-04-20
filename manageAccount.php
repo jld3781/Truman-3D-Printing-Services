@@ -76,11 +76,10 @@ endif;
       $statement->execute();
       $result = $statement->fetchAll();
       ?>
+      <h2>Edit Profile</h2>
       <p>
         <?= $error_msg ?>
       </p>
-
-      <h2>Edit Profile</h2>
       <form action="manageAccount.php" method="post">
           <fieldset>
             <p>

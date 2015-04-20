@@ -84,10 +84,14 @@
         $result = $statement->fetchAll(); ?>
       <form method="post" action="gallery.php">
         <?php
-        foreach( $result as $project ): ?>
+        foreach( $result as $project ): 
+          $link = 'http://bluesfest.no/site/bluesfest.no/design/layouts/images/no-image-placeholder.png?fh=250&fw=350'; 
+          if($project['Picture']!=null):
+            $link = $project['Picture'];
+          endif;?>
             <ul class="galleryitems">
               <li>
-                <img src="<?=$project['Picture']?>" 
+                <img src="<?=$link?>" 
                 alt="Picture of: <?=$project['ProjectName']?>" width="250" height="200"/>
               </li>
               <li>
