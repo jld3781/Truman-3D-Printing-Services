@@ -22,6 +22,14 @@
       file_put_contents(DEFINITION_FILENAME, trim($line) . PHP_EOL, FILE_APPEND);
     endforeach;
   }
+  
+  
+  if(isset($_POST['sort']) &&
+     $_POST['sort']=='By Author'):
+    $sort = 'CreatorEmail';
+  else:
+    $sort = 'ProjectName';
+  endif;
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,10 +47,27 @@
     
     <aside>
       <h2>Filter</h2>
-      <button type="submit" value="1" name="Recent">Most Recent</button>
-      <button type="submit" value="1" name="Popular">Most Popular</button>
-      <button type="submit" value="1" name="Featured">Featured</button>
-      <button type="submit" value="1" name="Alphabetical">Alphabetical</button>
+      <form method="post" action="gallery.php">
+        <!--
+        <button type="submit" value="1" name="Recent">
+          Most Recent
+        </button>
+       
+        <button type="submit" value="1" name="Popular">
+          Most Popular
+        </button>
+        <button type="submit" value="1" name="Featured">
+          Featured
+        </button>
+        -->
+        <select name="sort">
+          <option value="By Name">By Name</option>
+          <option value="By Author">By Author</option>
+        </select>
+        <button type="submit" name="submit">
+          Sort
+        </button>
+      </form>
     </aside>
     
     <section id="gallery">
@@ -50,45 +75,31 @@
       <h1>Gallery</h1>
       
       <?php
-        $lines = get_a_file( DEFINITION_FILENAME );
-        #Handles the delete button
-        $line_count = 0;
-        foreach( $lines as $line):
-          if(isset($_POST["del$line_count"])):
-            unset($lines[$line_count]);
-          endif;
-          $line_count = $line_count + 1;
-        endforeach;
-        out_to_file( DEFINITION_FILENAME, $lines); 
-      ?>
-
+        require_once( 'dbconnection.php' );
+        $query = "SELECT CreatorEmail, ProjectName, ProjectLink, Picture
+                  FROM PROJECT
+                  ORDER BY $sort";
+        $statement = $db->prepare( $query );
+        $statement->execute();
+        $result = $statement->fetchAll(); ?>
       <form method="post" action="gallery.php">
-        <?php $lines = get_a_file( DEFINITION_FILENAME ); 
-          $line_count = 0;
-          foreach( $lines as $line ):
-            list($projectname, $projectlink, $weight, $color, $dateadded) =
-             explode( "\t", $line ); ?>
+        <?php
+        foreach( $result as $project ): ?>
             <ul class="galleryitems">
               <li>
-                <img src="http://products.boysstuff.co.uk/prod_zoom_right/tnt-plunger.jpg" 
-                alt="Picture of: <?=$projectname?>" width="250" height="200"/>
+                <img src="<?=$project['Picture']?>" 
+                alt="Picture of: <?=$project['ProjectName']?>" width="250" height="200"/>
               </li>
               <li>
                 Link to: 
-                <a href="<?=$projectlink?>"><?=$projectname?></a>
+                <a href="<?=$project['ProjectLink']?>"><?=$project['ProjectName']?></a>
               </li>
-              <li><?="Weight: $weight" ?></li>
-              <li><?="Color: $color" ?></li>
-              <li><?="Date Added: $dateadded" ?></li>
+              <li>Created by: <?=$project['CreatorEmail'] ?></li>
             </ul>
-        <?php
-          $line_count++;
-          endforeach;
-        ?>
+        <?php endforeach; ?>
       </form>
     </section>
     
     
   </body>
 </html>
-
