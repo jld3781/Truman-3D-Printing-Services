@@ -59,7 +59,7 @@ endif;
                     FROM PRINT_JOB as PJ 
                       NATURAL JOIN PROJECT as P
                     WHERE Status = 'Rejected' OR Status = 'Completed'
-                    ORDER BY StopTime";
+                    ORDER BY StopTime DESC";
           $statement = $db->prepare( $query );
           $statement->execute();
           $result = $statement->fetchAll();
