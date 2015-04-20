@@ -28,15 +28,19 @@
          preg_match( '%^\S{5,}$%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
         
-          $sql = 'SELECT * FROM USER WHERE Email ="'. $_POST['email'] .'"';
-          $statement = $db->prepare($sql);
-          $statement->execute();
-          $rows = $statement->fetchAll();
-          
-          $alreadytaken = false;
-          if( empty($rows) ):
-            $alreadytaken = true;
-          endif;
+        $sql = 'SELECT Email, Username
+                FROM USER 
+                WHERE Email =:email AND Username=:username';
+        $statement = $db->prepare($sql);
+        $statement->bindParam(':email', $_POST['email']);
+        $statement->bindParam(':username', $_POST['username']);
+        $statement->execute();
+        $rows = $statement->fetchAll();
+        
+        $alreadytaken = false;
+        if( !empty($rows) ):
+          $alreadytaken = true;
+        endif;
         if(!$alreadytaken):
           if(preg_match( '|^\w+$|', $_POST['username']) &&
              preg_match( '|^\S+$|', $_POST['password']) &&
@@ -71,7 +75,7 @@
             $error_msg = 'You must enter a valid username-password pair';
           endif;
         else:
-          $error_msg = 'Username already taken';
+          $error_msg = 'Username or email already taken';
         endif;
       else:
         $error_msg = 'All fields must be filled out with valid data';
