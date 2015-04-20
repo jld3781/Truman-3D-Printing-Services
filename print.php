@@ -33,7 +33,7 @@
             Project Name
           </label>
           <input type="text" id="projectName" name="projectName" 
-                   pattern="^[a-zA-Z][a-zA-Z0-9_-]+$" required />
+                   pattern="^[a-zA-Z][a-zA-Z0-9_-]+$" required="required" />
         </fieldset>
        
        <fieldset>
@@ -41,21 +41,48 @@
             Project Link
           </label>
           <input type="text" id="projectLink" name="projectLink" 
-                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required />
+                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required="required" />
+        </fieldset>
+
+        <fieldset>
+          <label for="length" 
+          title="Enter the length(in inches) for your project to be printed at.">
+            Length (inches)
+          </label>
+          <input type="number" id="length" name="length" min="0" max="50000" 
+                  step="any"/>
+        </fieldset>
+
+        <fieldset>
+          <label for="width" 
+          title="Enter the width(in inches) for your project to be printed at.">
+            Width (inches)
+          </label>
+          <input type="number" id="width" name="width" min="0" max="50000" 
+                  step="any"/>
+        </fieldset>
+
+        <fieldset>
+          <label for="height" 
+          title="Enter the height(in inches) for your project to be printed at.">
+            Height (inches)
+          </label>
+          <input type="number" id="height" name="height" min="0" max="50000" 
+                  step="any" />
         </fieldset>
         
         <fieldset>
           <label for="weight" 
-          title="Enter the weight(in grams) for your project to be printed at.">
-            Weight (g)
+          title="Enter the weight(in pounds) for your project to be printed at.">
+            Weight (lbs)
           </label>
           <input type="number" id="weight" name="weight" min="0" max="50000" 
-                  required />
+                  step="any" />
         </fieldset>
 
         <fieldset>
           <label for="material">Material</label>
-          <select name="material" id="material" required>
+          <select name="material" id="material" required="required">
             <option value="" selected="selected" 
                       disabled="disabled">Choose a Material</option>
             <?php
@@ -78,7 +105,7 @@
         
         <fieldset>
           <label for="color">Color</label>
-          <select name="color" id="color" required>
+          <select name="color" id="color" required="required">
             <option value="" selected="selected" 
                       disabled="disabled">Choose a Color</option>
             <?php
