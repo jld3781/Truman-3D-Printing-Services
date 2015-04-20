@@ -24,8 +24,8 @@
         You can login as a <em>regular user</em> with
         <label>Username:</label> jbeck2
         <label>Password:</label> pass5
-        Enjoy!
       </p>
+      Enjoy!
     </section>
   </body>
 </html>

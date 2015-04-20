@@ -55,6 +55,11 @@ h1 {
   font-size: 24pt;
 }
 
+#mainHeader
+{
+font-size: 35pt;
+}
+
 aside {
   float: left;
   width: 150px;
@@ -108,11 +113,11 @@ a.loginheader:hover {
   text-decoration: underline;
 }
 
-a.loggedinheader{
+.loggedinheader{
 color: white;
 text-decoration: none;
-display: inline;
 padding: 0px 5px;
+font-size: 14pt;
 }
 
 a.loggedinheader:hover {
@@ -187,4 +192,9 @@ td, th {
   padding: 10px;
   background-color: white;
   border: solid 1px #ccc;
+}
+
+#signinbutton
+{
+  margin-top: -46px;
 }
