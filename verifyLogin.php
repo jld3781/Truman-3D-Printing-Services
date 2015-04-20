@@ -30,8 +30,8 @@
         $statement = $db->prepare( $query );
         $statement->bindParam( ':username', $username, PDO::PARAM_STR );
         $statement->execute();
-        
         $result = $statement->fetchAll();
+        
         if( !empty($result) &&
             password_verify($_POST['password'], $result[0]['PasswordHash'])):
           $_SESSION['username'] =  $username;
