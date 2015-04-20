@@ -5,45 +5,50 @@
   session_start();
   require_once('dbconnection.php');
   $_SESSION['username'] = "jbeck1";
-
+  
+  // GET THE USER'S EMAIL
   $sql = "SELECT Email FROM USER WHERE Username = '" . $_SESSION['username'] . "';";
   $stmt = $db->prepare($sql);
   $stmt->execute();
   $rows = $stmt->fetchAll();
- 
   $_SESSION['email'] = $rows[0]['Email'];
-echo $_SESSION['email'];
+
+  //CHECK TO SEE IF THE PROJECT ALREADY EXISTS
   $sql = "SELECT * FROM PROJECT WHERE ProjectName = '" . $_SESSION['projectName']
           . "' AND CreatorEmail = '" . $_SESSION['email']."';";
   $stmt = $db -> prepare($sql);
   $stmt->execute();
   $rows = $stmt->fetchAll();
 
-  if(empty($rows)):
-echo 'test1';
+  if(empty($rows)): //IF PROJECT DOES NOT ALREADY EXIST
+    //CREATE THE PROJECT
     $sql = "INSERT INTO PROJECT (CreatorEmail, ProjectName, ProjectLink) 
-            VALUES(':creatoremail', ':projectname', ':projectlink');";
+            VALUES(:creatoremail, :projectname, :projectlink)";
     $stmt = $db-> prepare($sql);
     $stmt->bindParam(':creatoremail', $_SESSION['email'], PDO::PARAM_STR);
     $stmt->bindParam(':projectname', $_SESSION['projectName'], PDO::PARAM_STR);
     $stmt->bindParam(':projectlink', $_SESSION['projectLink']);
     $stmt->execute();
-echo 'test2';
-    $sql = "INSERT INTO PROJECT (PrinterEmail, CreatorEmail, ProjectName,
-             Status, Weight, Color, Comment, MaterialType) 
-            VALUES(':printeremail',':creatoremail', ':projectname',   
-              ':status', ':weight', ':color', ':comment', ':materialtype');";
-    $stmt = $db -> prepare($sql);
-    $stmt->bindParam(':printeremail', $_SESSION['email'], PDO::PARAM_STR);
-    $stmt->bindParam(':creatoremail', $_SESSION['email'], PDO::PARAM_STR);
-    $stmt->bindParam(':projectname', $_SESSION['projectName'], PDO::PARAM_STR);
-    $stmt->bindValue(':status', 'Waiting');
-    $stmt->bindParam(':weight', $_SESSION['weight'], PDO::PARAM_INT);
-    $stmt->bindParam(':color', $_SESSION['color'], PDO::PARAM_STR);
-    $stmt->bindParam(':comment', $_SESSION['comment'], PDO::PARAM_STR);
-    $stmt->bindParam(':materialtype', $_SESSION['materialType'],PDO::PARAM_STR);
-    $stmt->execute();
   endif;
+
+  //CREATE THE PRINT JOB
+  $sql = "INSERT INTO PRINT_JOB (PrinterEmail, CreatorEmail, ProjectName,
+           Status, Length, Width, Height, Weight, Color, Comment, MaterialType) 
+          VALUES(:printeremail,:creatoremail, :projectname, :status, :length, 
+            :width, :height, :weight, :color, :comment, :materialtype);";
+  $stmt = $db -> prepare($sql);
+  $stmt->bindParam(':printeremail', $_SESSION['email'], PDO::PARAM_STR);
+  $stmt->bindParam(':creatoremail', $_SESSION['email'], PDO::PARAM_STR);
+  $stmt->bindParam(':projectname', $_SESSION['projectName'], PDO::PARAM_STR);
+  $stmt->bindValue(':status', 'Waiting');
+  $stmt->bindParam(':length', $_SESSION['length'], PDO::PARAM_STR);
+  $stmt->bindParam(':width', $_SESSION['width'], PDO::PARAM_STR);
+  $stmt->bindParam(':height', $_SESSION['height'], PDO::PARAM_STR);
+  $stmt->bindParam(':weight', $_SESSION['weight'], PDO::PARAM_STR);
+  $stmt->bindParam(':color', $_SESSION['color'], PDO::PARAM_STR);
+  $stmt->bindParam(':comment', $_SESSION['comments'], PDO::PARAM_STR);
+  $stmt->bindParam(':materialtype', $_SESSION['material'],PDO::PARAM_STR);
+  $stmt->execute();
 ?>
 <!DOCTYPE html>
 <html>

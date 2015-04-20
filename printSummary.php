@@ -4,16 +4,16 @@
   ini_set('display_errors', '1');
   session_start();
   
-  $badchar = ["\n" , "\r" , "\n\r", "\r\n"];
-  $comments = str_replace($badchar, " ", $_POST['comments']);
-
-
   $_SESSION['projectName'] = htmlspecialchars($_POST['projectName']);
   $_SESSION['projectLink'] = htmlspecialchars($_POST['projectLink']);
+  $_SESSION['length'] = $_POST['length'];
+  $_SESSION['width'] = $_POST['width'];
+  $_SESSION['height'] = $_POST['height'];
   $_SESSION['weight'] = $_POST['weight'];
   $_SESSION['material'] = $_POST['material'];
   $_SESSION['color'] = $_POST['color'];
-  $_SESSION['comments'] = $comments;
+  $badchar = ["\n" , "\r" , "\n\r", "\r\n"];
+  $_SESSION['comments'] = str_replace($badchar, " ", $_POST['comments']);;
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +35,7 @@
         <li>Project Name: <?= $_SESSION['projectName'] ?></li>
         <li>Project Link: <?= $_SESSION['projectLink'] ?></li>
         <li>Weight: <?= $_SESSION['weight'] ?> grams</li>
-	<li>Material: <?= $_SESSION['material'] ?></li>
+	      <li>Material: <?= $_SESSION['material'] ?></li>
         <li>Color: <?= $_SESSION['color'] ?></li>
         <li>Comments: <?= $comments ?></li>
       </ul>
