@@ -8,8 +8,8 @@ define('PRINTJOB_HEADERS_FILE', 'printQueueHeaders.txt' );
 
 //Handles a change in job Status
 if(isset($_POST['status']) && isset($_POST['jobId'])):
-  $jobId = $_POST['jobId'];
-  $status = $_POST['status'];
+  $jobId = htmlspecialchars($_POST['jobId']);
+  $status = htmlspecialchars($_POST['status']);
 
   $sql = "UPDATE PRINT_JOB
             SET Status = :status, StopTime = NOW() 
