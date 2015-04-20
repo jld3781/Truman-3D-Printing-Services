@@ -1,6 +1,6 @@
 #Still may need some "Unique" tags candidate keys
 #Has not been run yet!!
-use jfs1744;
+use sjl6333;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -57,13 +57,14 @@ CREATE TABLE CAN_PRINT(
 
 CREATE TABLE PRINT_JOB(
   JobId INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  PrinterId INTEGER UNSIGNED NOT NULL,
+  PrinterId INTEGER UNSIGNED,
   PrinterEmail VARCHAR(255) NOT NULL,
   CreatorEmail VARCHAR(255) NOT NULL,
   ProjectName VARCHAR(255) NOT NULL,
-  Status ENUM('Waiting', 'Printing', 'On Hold', 'Complete', 'Rejected') NOT NULL,
+  Status ENUM('Waiting', 'Printing', 'On Hold', 'Completed', 'Rejected') NOT NULL,
   StartTime DATETIME,
   StopTime DATETIME,
+  SubmittedTime DATETIME,
   Length FLOAT,
   Width FLOAT,
   Height FLOAT,
@@ -212,10 +213,14 @@ insert into CAN_PRINT(Color, Type, PrinterId) VALUES('Black', 'ABS', '6');
 insert into CAN_PRINT(Color, Type, PrinterId) VALUES('White', 'PLA', '6');
 insert into CAN_PRINT(Color, Type, PrinterId) VALUES('Gray', 'PLA', '6');
 
-insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333@truman.edu', 'sjl6333@truman.edu', 'Arc Reactor', 'Waiting', '20150322 10:34:09 PM', '3.0', '3.0', '3.0', 'White', '8.34', 'Please fast please', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333@truman.edu', 'sjl6333@truman.edu', 'Arc Reactor', 'Waiting', '2015-03-22 10:34:09 PM', '2015-03-18 04:56:49 PM', '3.0', '3.0', '3.0', 'White', '8.34', 'Please fast please', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'jld3781@truman.edu', 'jld3781@truman.edu', 'Star-Lord Elemental Gun', 'Waiting', '20150324 11:45:14 AM', '5.0', '3.0', '3.5', 'Blue', '15.64', 'Make as large as possible', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'jld3781@truman.edu', 'jld3781@truman.edu', 'Star-Lord Elemental Gun', 'Waiting', '2015-03-24 11:45:14 AM', '2015-03-19 11:42:30 AM', '5.0', '3.0', '3.5', 'Blue', '15.64', 'Make as large as possible', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('2', 'jfs1744@truman.edu', 'jfs1744@truman.edu', 'Robots vs Wizards Chess Set', 'Waiting', '20150416 02:55:06 AM', '8.0', '8.0', '3.0', 'Gray', '12.05', 'No Comment', '.5', 'PLA');
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('2', 'jfs1744@truman.edu', 'jfs1744@truman.edu', 'Robots vs Wizards Chess Set', 'Waiting', '2015-04-16 02:55:06 AM', '2015-04-14 6:17:22 PM', '8.0', '8.0', '3.0', 'Gray', '12.05', 'No Comment', '.5', 'PLA');
 
-insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1@truman.edu', 'jfs1744@truman.edu', 'Robots vs Wizards Chess Set', 'Printing', '20150416 09:53:10 AM', '8.0', '8.0', '3.0', 'White', '12.05', 'No Comment', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1@truman.edu', 'jfs1744@truman.edu', 'Robots vs Wizards Chess Set', 'Printing', '2015-04-16 09:53:10 AM', '2015-04-15 10:54:56 AM', '8.0', '8.0', '3.0', 'White', '12.05', 'No Comment', '.5', 'ABS');
+
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, StopTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1@truman.edu', 'jfs1744@truman.edu', 'Robots vs Wizards Chess Set', 'Completed', '2015-04-16 09:53:10 AM', '2015-04-16 02:53:10 PM', '2015-04-15 08:05:00 PM', '8.0', '8.0', '3.0', 'White', '12.05', 'No Comment', '.5', 'ABS');
+
+insert into PRINT_JOB(PrinterId, PrinterEmail, CreatorEmail, ProjectName, Status, StartTime, StopTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333@truman.edu', 'sjl6333@truman.edu', 'Arc Reactor', 'Completed', '2015-04-19 10:34:09 AM', '2015-04-19 11:20:043 AM', '2015-04-18 09:33:26 PM', '3.0', '3.0', '3.0', 'White', '8.34', 'Please fast please', '.5', 'ABS');
