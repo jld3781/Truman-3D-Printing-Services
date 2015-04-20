@@ -37,7 +37,7 @@ endif;
     ?>
     <section class="maincontent">
       <h1>Printing Queue</h1>
-      <a href="admin2.php">Goto Completed/Reject Jobs</a>
+      <a href="admin2.php">Goto Completed/Rejected Jobs</a>
       <table>
         <?php
           $lines = file( PRINTJOB_HEADERS_FILE );
@@ -90,7 +90,7 @@ endif;
                   </td>
                   <td><?=$tuples['Weight']?></td><?php
                 ?><td><?=$tuples['Length']?>x<?=$tuples['Width']
-                    ?>x<?=$tuples['Height']?></td><?php
+                      ?>x<?=$tuples['Height']?></td><?php
                 ?><td><?=$tuples['Color']?></td><?php
                 ?><td><?=$tuples['Comment']?></td><?php
                 ?><td><?=$tuples['SubmittedTime']?></td><?php

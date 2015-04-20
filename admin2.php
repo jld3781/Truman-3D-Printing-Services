@@ -51,7 +51,7 @@ endif;
           endforeach;
           ?></tr><?php
           
-          //Pulls in all print jobs that aren't completed or rejected
+          //Pulls in all print jobs that are completed or rejected
           $query = "SELECT JobId, PrinterEmail, PJ.ProjectName, Status,
                       StartTime, StopTime, SubmittedTime, Length, Width, Height,
                       Color, MaterialType, Weight, ChargedPrice, Comment,
