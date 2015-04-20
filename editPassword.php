@@ -15,29 +15,28 @@ if( $loggedin && isset($_POST['submit'])):
       isset($_POST['retypepassword']) ):
     if( $_POST['newpassword'] === $_POST['retypepassword'] ):
       if( preg_match( '|^\S+$|', $_POST['newpassword'])):
-        $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-        $passwordmatch = false;
-        $newpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
-        file_put_contents(USERS_FILENAME, '');
-        foreach( $lines as $line ):
-          $oneline = explode( "\t", $line);
-          $currentUserName = $oneline[0];
-          if( $_SESSION['username'] === $currentUserName):
-            $passwordmatch = password_verify($_POST['oldpassword'], $oneline[1]);
-            if($passwordmatch):
-              $newline = $oneline[0]."\t".$newpassword."\t".$oneline[2]."\t".$oneline[3]."\t".$oneline[4]."\t".$oneline[5]."\t".$oneline[6]."\t".$oneline[7];
-              file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
-            else:
-              file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
-              $error_msg = 'Incorrect password';
-            endif;
-          else:
-            file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
-          endif;
-        endforeach;
-        if($passwordmatch):
+        require_once( 'dbconnection.php' );
+        $query = "SELECT PasswordHash
+                  FROM USER
+                  WHERE Username = :username";
+        $statement = $db->prepare( $query );
+        $statement->bindParam( ':username', $_SESSION['username'], PDO::PARAM_STR );
+        $statement->execute();
+        $result = $statement->fetchAll();
+    
+        if(password_verify($_POST['oldpassword'], $result[0]['PasswordHash'])):
+          $update = "UPDATE USER
+                     SET PasswordHash=:passwordhash
+                     WHERE Username=:username";
+          $newpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
+          $statement = $db->prepare( $update );
+          $statement->bindParam( ':username', $_SESSION['username']);
+          $statement->bindParam( ':passwordhash', $newpassword);
+          $statement->execute();
           header( 'Location: passchangesuccess.php' );
-          exit; 
+          exit;
+        else:
+          $error_msg = 'Password incorrect';
         endif;
       else:
         $error_msg = 'New password contains illegal characters';
