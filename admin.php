@@ -11,9 +11,15 @@ if(isset($_POST['status']) && isset($_POST['jobId'])):
   $jobId = htmlspecialchars($_POST['jobId']);
   $status = htmlspecialchars($_POST['status']);
 
+  if($_POST['status'] == 'Completed' || $_POST['status'] == 'Rejected'):
   $sql = "UPDATE PRINT_JOB
             SET Status = :status, StopTime = NOW() 
             WHERE JobId = :jobId";
+  elseif($_POST['status'] == 'Printing'):
+  $sql = "UPDATE PRINT_JOB
+            SET Status = :status, StartTime = NOW() 
+            WHERE JobId = :jobId";
+  endif;
   $statement = $db->prepare( $sql );
   $statement->bindParam( ':status', $status, PDO::PARAM_STR );
   $statement->bindParam( ':jobId', $jobId, PDO::PARAM_STR );
