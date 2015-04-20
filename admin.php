@@ -12,7 +12,7 @@ if(isset($_POST['status']) && isset($_POST['jobId'])):
   $status = $_POST['status'];
 
   $sql = "UPDATE PRINT_JOB
-            SET Status = :status 
+            SET Status = :status, StopTime = NOW() 
             WHERE JobId = :jobId";
   $statement = $db->prepare( $sql );
   $statement->bindParam( ':status', $status, PDO::PARAM_STR );
