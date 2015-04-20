@@ -24,20 +24,15 @@
              isset($_POST['retypepassword'])):
         if( $_POST['newpassword'] === $_POST['retypepassword'] ):
           if( preg_match( '|^\S+$|', $_POST['newpassword'])):
-            $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-            //$passwordmatch = false;
+            require_once( 'dbconnection.php' );
+            $update = "UPDATE USER 
+                       SET PasswordHash=:PasswordHash
+                       WHERE Username=:username";
             $newpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
-            file_put_contents(USERS_FILENAME, '');
-            foreach( $lines as $line ):
-              $oneline = explode( "\t", $line);
-              $currentUserName = $oneline[0];
-              if( $_SESSION['username'] === $currentUserName):
-                $newline = $oneline[0]."\t".$newpassword."\t".$oneline[2]."\t".$oneline[3]."\t".$oneline[4]."\t".$oneline[5]."\t".$oneline    [6]."\t".$oneline[7];
-                file_put_contents(USERS_FILENAME, $newline . PHP_EOL, FILE_APPEND);
-              else:
-                file_put_contents(USERS_FILENAME, $line . PHP_EOL, FILE_APPEND);
-              endif;
-            endforeach;
+            $statement = $db->prepare( $update );
+            $statement->bindParam( ':username', $_SESSION['username'] );
+            $statement->bindParam( ':PasswordHash', $newpassword );
+            $statement->execute();
             header('Location: passchangesuccess.php');
           else:
             $msg = 'New password contains illegal characters';

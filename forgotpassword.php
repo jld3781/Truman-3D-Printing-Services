@@ -12,29 +12,36 @@
       if(isset($_POST['username'])):
         $username = $_POST['username'];
         $email="";
-        $lines = file( USERS_FILENAME, FILE_IGNORE_NEW_LINES );
-
-        foreach( $lines as $line ):
-          list( $currentUserName, ,$email, , , , ,) = explode( "\t", $line );
-          if( $username === $currentUserName):
-            $to = "$email";
-            $subject = "Password Reset for Truman 3D Printing Services";
-            $min = 10000;
-            $max = 99999;
-            $code = rand ($min,$max);
-            $message = "Your password reset code is: $code";
-            // Always set content-type when sending HTML email
-            $headers = "MIME-Version: 1.0" . "\r\n";
-            $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
-            // More headers
-            //$headers = 'From: <Truman3DPrinting@gmail.com>' . "\r\n";
-            mail( $to, $subject, $message, $headers );
-            $_SESSION['code'] = $code;
-            $_SESSION['username'] = $username;
-            header('Location: passresetconfirm.php');
-          endif;
-        endforeach;
-      
+        
+        require_once( 'dbconnection.php' );
+        $query = "SELECT Username, Email
+                  FROM USER
+                  WHERE Username=:username";
+        $statement = $db->prepare( $query );
+        $statement->bindParam( ':username', $username, PDO::PARAM_STR );
+        $statement->execute();
+        
+        $result = $statement->fetchAll();
+        if(!empty( $result ) ):
+          $email = $result[0]['Email'];
+          $to = "$email";
+          $subject = "Password Reset for Truman 3D Printing Services";
+          $min = 10000;
+          $max = 99999;
+          $code = rand ($min,$max);
+          $message = "Your password reset code is: $code";
+          // Always set content-type when sending HTML email
+          $headers = "MIME-Version: 1.0" . "\r\n";
+          $headers = "Content-type:text/html;charset=UTF-8" . "\r\n";
+          // More headers
+          //$headers = 'From: <Truman3DPrinting@gmail.com>' . "\r\n";
+          mail( $to, $subject, $message, $headers );
+          $_SESSION['code'] = $code;
+          $_SESSION['username'] = $username;
+          header('Location: passresetconfirm.php');
+        else:
+          $error_msg = 'Username not found';
+        endif;
       else:
         $error_msg = 'All fields must be filled out';
       endif;
