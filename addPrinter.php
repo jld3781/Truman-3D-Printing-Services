@@ -5,7 +5,7 @@ ini_set('display_errors', '1');
 
 require_once( 'dbconnection.php' );
 
-//Handles a change in job Status
+//Handles an added printer
 if(isset($_POST['submit']) && isset($_POST['Location'])
   && isset($_POST['MaximumHeight']) && isset($_POST['MaximumLength'])
   && isset($_POST['MaximumWidth']) && isset($_POST['abscolor'])
@@ -36,10 +36,10 @@ if(isset($_POST['submit']) && isset($_POST['Location'])
     $result = $statement->fetchAll();
 
     $printerId = $result[0]["PrinterId"];
-    echo($printerId);
 
     $sql = "insert into CAN_PRINT(Color, Type, PrinterId) 
             VALUES(:Color, :Type, :PrinterId)";
+    $statement = $db->prepare($sql);
     $statement->bindParam( ':PrinterId', $printerId);
     $statement->bindValue( ':Type', 'ABS');
     if (!empty($absColors)):
@@ -56,6 +56,7 @@ if(isset($_POST['submit']) && isset($_POST['Location'])
         $statement->execute();
       endforeach;
     endif;
+  header( 'Location: printerAddConfirmation.php' );
 endif;
 ?>
 <!DOCTYPE html>
@@ -129,18 +130,12 @@ endif;
           <img src="Colors/PurpleBox.png" alt="PurpleBox" width="40" height="40"/>
         <input type="checkbox" name="placolor[]" value="Green" checked="checked">
           <img src="Colors/GreenBox.png" alt="GreenBox" width="40" height="40"/>
-        <input type="checkbox" name="placolor[]" value="Orange" checked="checked">
-          <img src="Colors/OrangeBox.png" alt="OrangeBox" width="40" height="40"/>
         <input type="checkbox" name="placolor[]" value="Blue" checked="checked">
           <img src="Colors/BlueBox.png" alt="BlueBox" width="40" height="40"/>
-        <input type="checkbox" name="placolor[]" value="Gold" checked="checked">
-          <img src="Colors/GoldBox.png" alt="GoldBox" width="40" height="40"/>
-        <input type="checkbox" name="placolo[]r" value="Gray" checked="checked">
+        <input type="checkbox" name="placolor[]" value="Gray" checked="checked">
           <img src="Colors/GrayBox.png" alt="GrayBox" width="40" height="40"/>
-        <input type="checkbox" name="placolo[]r" value="White" checked="checked">
+        <input type="checkbox" name="placolor[]" value="White" checked="checked">
           <img src="Colors/WhiteBox.png" alt="WhiteBox" width="40" height="40"/>
-        <input type="checkbox" name="placolo[]r" value="Black" checked="checked">
-          <img src="Colors/BlackBox.png" alt="BlackBox" width="40" height="40"/>
         </fieldset>
         <fieldset>
           <input type="submit" name="submit">

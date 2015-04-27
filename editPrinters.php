@@ -8,7 +8,7 @@ require_once( 'dbconnection.php' );
 $isEditing = false;
 $PrinterId;
 
-//Handles a change in job Status
+//Handles a simple edit to a printer
 if(isset($_POST['PrinterId']) && isset($_POST['submit'])
         && isset($_POST['Location']) && isset($_POST['MaximumHeight'])
         && isset($_POST['MaximumWidth']) && isset($_POST['MaximumLength'])):
