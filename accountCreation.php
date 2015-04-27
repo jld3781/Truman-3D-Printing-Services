@@ -28,11 +28,10 @@
          preg_match( '%^\S{5,}$%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
         
-        $sql = 'SELECT Email, Username
+        $sql = 'SELECT Username
                 FROM USER 
-                WHERE Email =:email OR Username=:username';
+                WHERE Username=:username';
         $statement = $db->prepare($sql);
-        $statement->bindParam(':email', $_POST['email']);
         $statement->bindParam(':username', $_POST['username']);
         $statement->execute();
         $rows = $statement->fetchAll();
@@ -50,8 +49,8 @@
               $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
               
               $sql = "INSERT INTO USER ( Email, Username, FirstName, LastName, 
-                    PhoneNumber, FacultyFlag, AdminFlag, PasswordHash) 
-                    VALUES (:email, :username, :firstname, :lastname, :tel, 'F', 
+                    PhoneNumber, StudentId, FacultyFlag, AdminFlag, PasswordHash) 
+                    VALUES (:email, :username, :firstname, :lastname, :tel, :studentid, 'F', 
                     'F', :password)";
               $stmt = $db->prepare($sql);
               $stmt->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
@@ -60,6 +59,7 @@
               $stmt->bindParam(':lastname', $_POST['lastname'], PDO::PARAM_STR);
               $stmt->bindParam(':tel', $_POST['tel'], PDO::PARAM_STR);
               $stmt->bindParam(':password', $hashedpassword, PDO::PARAM_STR);
+              $stmt->bindParam(':studentid', $_POST['studentid']);
               $stmt->execute();
                              
               $_SESSION['username'] = $_POST['username'];
