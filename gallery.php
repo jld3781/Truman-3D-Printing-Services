@@ -1,32 +1,15 @@
  <?php
   # Samuel Livingston
-  # Still waiting for javascript on this one
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
 
   define( 'DEFINITION_FILENAME', 'gallery.txt' );
 
-  /* Read a file of text, strip newlines
-  return the file as an array of lines */
-  function get_a_file( $filename )
-  {
-    $lines = file( $filename, FILE_IGNORE_NEW_LINES );
-    return $lines;
-  }
-
-  function out_to_file( $filename , $lines )
-  {
-    asort($lines);
-    file_put_contents(DEFINITION_FILENAME, "");
-    foreach( $lines as $line ):
-      file_put_contents(DEFINITION_FILENAME, trim($line) . PHP_EOL, FILE_APPEND);
-    endforeach;
-  }
   
   $sort='';
   if(isset($_POST['sort']) &&
      $_POST['sort']=='By Author'):
-    $sort = 'CreatorEmail';
+    $sort = 'CreatorUsername';
   else:
     $sort = 'ProjectName';
   endif;
@@ -48,18 +31,6 @@
     <aside>
       <h2>Filter</h2>
       <form method="post" action="gallery.php">
-        <!--
-        <button type="submit" value="1" name="Recent">
-          Most Recent
-        </button>
-       
-        <button type="submit" value="1" name="Popular">
-          Most Popular
-        </button>
-        <button type="submit" value="1" name="Featured">
-          Featured
-        </button>
-        -->
         <select name="sort">
           <option value="By Name">By Name</option>
           <option value="By Author">By Author</option>
@@ -76,13 +47,13 @@
       
       <?php
         require_once( 'dbconnection.php' );
-        $query = "SELECT DISTINCT CreatorEmail, ProjectName, ProjectLink, Picture
+        $query = "SELECT CreatorUsername, ProjectName, ProjectLink, Picture
                   FROM PROJECT as P
                      NATURAL JOIN PRINT_JOB as PJ
                   WHERE P.ProjectName = PJ.ProjectName AND 
                     PJ.Status = 'Completed'
                   ORDER BY $sort";
-        $statement = $db->prepare( $query );
+        $statement = $db->prepare( $query ); 
         $statement->execute();
         $result = $statement->fetchAll(); ?>
       <form method="post" action="gallery.php">
@@ -101,7 +72,7 @@
                 Link to: 
                 <a href="<?=$project['ProjectLink']?>"><?=$project['ProjectName']?></a>
               </li>
-              <li>Created by: <?=$project['CreatorEmail'] ?></li>
+              <li>Created by: <?=$project['CreatorUsername'] ?></li>
             </ul>
         <?php endforeach; ?>
       </form>

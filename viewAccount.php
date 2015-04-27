@@ -32,27 +32,29 @@ $loggedin = isset($_SESSION['loggedin']);
       $result = $statement->fetchAll();
       ?>
       <h2>Your Profile</h2>
-      <p>
-        Username: <?= $result[0]['Username'] ?>
-      <p>
-        First name: <?= $result[0]['FirstName'] ?>
-      </p>
-      <p>
-        Last name: <?= $result[0]['LastName'] ?>
-      </p>
-      <p>
-        Student ID: <?= $result[0]['StudentId'] ?>
-      </p>
-      <p>
-        Email: <?= $result[0]['Email'] ?>
-      </p>
-      <p>
-        Phone Number: <?= $result[0]['PhoneNumber'] ?>
-      </p>
+
       <p>
         <a href="manageAccount.php">Edit Profile</a>
         <a href="editPassword.php">Change Password</a>
       </p>
+      <p>
+        <label>Username:</label> <?= $result[0]['Username'] ?>
+      <p>
+        <label>First name:</label> <?= $result[0]['FirstName'] ?>
+      </p>
+      <p>
+        <label>Last name:</label> <?= $result[0]['LastName'] ?>
+      </p>
+      <p>
+        <label>Student ID:</label> <?= $result[0]['StudentId'] ?>
+      </p>
+      <p>
+        <label>Email:</label> <?= $result[0]['Email'] ?>
+      </p>
+      <p>
+        <label>Phone Number:</label> <?= $result[0]['PhoneNumber'] ?>
+      </p>
+      
 
     <?php else:?>
       <p>

@@ -28,11 +28,10 @@
          preg_match( '%^\S{5,}$%', $_POST['password'] ) &&
          isset($_POST['retypepassword']) ):
         
-        $sql = 'SELECT Email, Username
+        $sql = 'SELECT Username
                 FROM USER 
-                WHERE Email =:email AND Username=:username';
+                WHERE Username=:username';
         $statement = $db->prepare($sql);
-        $statement->bindParam(':email', $_POST['email']);
         $statement->bindParam(':username', $_POST['username']);
         $statement->execute();
         $rows = $statement->fetchAll();
@@ -49,23 +48,25 @@
               #add new account and start session
               $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
               
-              $sql = "INSERT INTO USER ( Email, FirstName, LastName, 
-                    PhoneNumber, FacultyFlag, AdminFlag, PasswordHash) 
-                    VALUES (':email', ':firstname', ':lastname', ':tel', '0', 
-                    '0', ':password')";
+              $sql = "INSERT INTO USER ( Email, Username, FirstName, LastName, 
+                    PhoneNumber, StudentId, FacultyFlag, AdminFlag, PasswordHash) 
+                    VALUES (:email, :username, :firstname, :lastname, :tel, :studentid, 'F', 
+                    'F', :password)";
               $stmt = $db->prepare($sql);
               $stmt->bindParam(':email', $_POST['email'], PDO::PARAM_STR);
+              $stmt->bindParam(':username', $_POST['username']);
               $stmt->bindParam(':firstname', $_POST['firstname'], PDO::PARAM_STR);
               $stmt->bindParam(':lastname', $_POST['lastname'], PDO::PARAM_STR);
               $stmt->bindParam(':tel', $_POST['tel'], PDO::PARAM_STR);
               $stmt->bindParam(':password', $hashedpassword, PDO::PARAM_STR);
+              $stmt->bindParam(':studentid', $_POST['studentid']);
               $stmt->execute();
                              
               $_SESSION['username'] = $_POST['username'];
               $_SESSION['loggedin'] = true;
               $_SESSION['firstname'] = $_POST['firstname'];
-              $_SESSION['lastname'] = $_POST['firstname'];
-              $_SESSION['aflag'] = 0;
+              $_SESSION['lastname'] = $_POST['lastname'];
+              $_SESSION['aflag'] = 'F';
               header( 'Location: accountCreated.php' );
               exit;
             else:

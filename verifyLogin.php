@@ -4,13 +4,8 @@
   ini_set('display_errors', '1');
   session_start();
   
-  define('USER_DATABASE','users.txt');
-
   $error_msg = '';
-  $filename = USER_DATABASE;
-  $lines = file( $filename, FILE_IGNORE_NEW_LINES );
-  array_shift($lines);
-
+  
   if( !(isset($_SESSION['loggedin']))):
   
     if( isset( $_POST['submit'] )):

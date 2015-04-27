@@ -3,10 +3,12 @@
   error_reporting(E_ALL);
   ini_set('display_errors', '1');
   session_start();
-  
-  $_SESSION['projectName'] = htmlspecialchars($_POST['projectName']);
-  $_SESSION['projectLink'] = htmlspecialchars($_POST['projectLink']);
-  $_SESSION['picture'] = htmlspecialchars($_POST['picture']);
+  if(!isset($_POST['submit'])):
+    header('Location: login.php');
+  endif;
+  list( $projectname, $projectusername ) = explode("\t",$_POST['project']);
+  $_SESSION['projectname'] = htmlspecialchars($projectname);
+  $_SESSION['creatorusername'] =htmlspecialchars($projectusername);
   $_SESSION['length'] = htmlspecialchars($_POST['length']);
   $_SESSION['width'] = htmlspecialchars($_POST['width']);
   $_SESSION['height'] = htmlspecialchars($_POST['height']);
@@ -34,20 +36,19 @@
       <h1>Print Summary</h1>
       
       <ul id="print-summary-list">
-        <li>Project Name: <?= $_SESSION['projectName'] ?></li>
-        <li>Project Link: <?= $_SESSION['projectLink'] ?></li>
-        <li>Project Picture URL: <?= $_SESSION['picture'] ?></li>
+        <li>Project Name: <?= $_SESSION['projectname'] ?></li>
+        <li>Project Creator Name: <?= $_SESSION['creatorusername'] ?></li>
         <li>Length: <?= $_SESSION['length'] ?> inches</li>
         <li>Width: <?= $_SESSION['width'] ?> inches</li>
         <li>Height: <?= $_SESSION['height'] ?> inches</li>
         <li>Weight: <?= $_SESSION['weight'] ?> pounds</li>
-	      <li>Material: <?= $_SESSION['material'] ?></li>
+	<li>Material: <?= $_SESSION['material'] ?></li>
         <li>Color: <?= $_SESSION['color'] ?></li>
         <li>Comments: <?= $_SESSION['comments'] ?></li>
       </ul>
 
       <form method="post" action="orderConfirmation.php">
-        <button type="submit">Submit Order</button>
+        <button type="submit" name="submit">Submit Order</button>
       </form>
     </section>
   </body>

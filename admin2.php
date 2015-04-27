@@ -53,7 +53,7 @@ endif;
           ?></tr><?php
           
           //Pulls in all print jobs that are completed or rejected
-          $query = "SELECT JobId, PrinterEmail, PJ.ProjectName, Status,
+          $query = "SELECT JobId, PrinterUsername, PJ.ProjectName, Status,
                       StartTime, StopTime, SubmittedTime, Length, Width, Height,
                       Color, MaterialType, Weight, ChargedPrice, Comment,
                       P.ProjectLink
@@ -72,7 +72,7 @@ endif;
           ?><tr><?php
             $count = 1;
               ?><td><?=$tuples['JobId']?></td><?php
-              ?><td><?=$tuples['PrinterEmail']?></td><?php
+              ?><td><?=$tuples['PrinterUsername']?></td><?php
               ?><td><a href="<?=$tuples['ProjectLink']?>"><?=$tuples['ProjectName']?></td>
                 <td>
                   <form action="admin2.php" method="post">
