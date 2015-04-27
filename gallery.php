@@ -76,14 +76,13 @@
       
       <?php
         require_once( 'dbconnection.php' );
-        $query = "SELECT CreatorEmail, ProjectName, ProjectLink, Picture
+        $query = "SELECT DISTINCT CreatorEmail, ProjectName, ProjectLink, Picture
                   FROM PROJECT as P
                      NATURAL JOIN PRINT_JOB as PJ
                   WHERE P.ProjectName = PJ.ProjectName AND 
                     PJ.Status = 'Completed'
-                  ORDER BY :sort";
+                  ORDER BY $sort";
         $statement = $db->prepare( $query );
-        $statement -> bindParam('sort', $sort,PDO::PARAM_STR); 
         $statement->execute();
         $result = $statement->fetchAll(); ?>
       <form method="post" action="gallery.php">
