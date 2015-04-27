@@ -57,6 +57,7 @@ endif;
     <ul>
       <li><a href="home.php">Home</a></li>
       <li><a href="info.php">Info</a></li>
+      <li><a href="createProject.php">Create Project</a></li>
       <li><a href="print.php">Print</a></li>
       <li><a href="gallery.php">Gallery</a></li>
       <li><a href="jbeck.php">For Dr.Beck</a></li>

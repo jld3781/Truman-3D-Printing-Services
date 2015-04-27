@@ -27,29 +27,36 @@
       <form method="post" action="printSummary.php">
       
         <fieldset>
-          <label for="projectName" title="Create a name for your project.">
-            Project Name
-          </label>
-          <input type="text" id="projectName" name="projectName" 
-                   pattern="^[a-zA-Z][a-z A-Z0-9_-]+$" required="required" />
+          <label for="project">Project</label>
+          <?php if(isset($_POST['projectname'])): 
+            $project = "".$_POST['projectname']." by ".$_POST['creatorusername'];
+            $projectdetails = $_POST['projectname']."\t".$_POST['creatorusername'];?>
+          <select name="project" id="project" required="required">
+            <option value="<?= $projectdetails ?>" selected="selected">
+              <?=$project?>
+            </option>
+          <?php else: ?>
+          <select name="project" id="project" required="required">
+            <option value="" selected="selected" 
+                      disabled="disabled">Choose a Project</option>
+            <?php
+              $sql = "SELECT ProjectName, CreatorUsername FROM PROJECT ORDER BY ProjectName";
+              $stmt = $db -> prepare($sql);
+              $stmt->execute();
+              $rows = $stmt->fetchAll();
+              foreach($rows as $row):
+                $project = "".$row['ProjectName']." by ".$row['CreatorUsername'];
+                $projectdetails = $row['ProjectName']."\t".$row['CreatorUsername'];
+            ?>
+                <option value="<?=$projectdetails?>"><?=$project?></option>
+            <?php 
+              endforeach;
+            ?>
+          <?php endif; ?>
+              
+          </select>
         </fieldset>
-       
-       <fieldset>
-          <label for="projectLink" title="Provide a link to your project file.">
-            Project Link
-          </label>
-          <input type="text" id="projectLink" name="projectLink" 
-                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required="required" />
-        </fieldset>
-
-        <fieldset>
-          <label for="picture" title="Provide a link to a picture of your project.">
-            Project Picture URL
-          </label>
-          <input type="text" id="picture" name="picture" 
-                   pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" />
-        </fieldset>
-
+     
         <fieldset>
           <label for="length" 
           title="Enter the length(in inches) for your project to be printed at.">
@@ -135,7 +142,7 @@
           <textarea name="comments" id="comments"></textarea>
         </fieldset>
         
-        <button type="submit" name="printDetails">Next</button>
+        <button type="submit" name="submit">Next</button>
         
       </form>
     </section>
