@@ -18,7 +18,7 @@
     endif;
   else:
     $error_msg = "Not a file";
-    header('Location: projectCreation.php');
+    header('Location: createProject.php');
   endif;
   $_SESSION['projectname'] = htmlspecialchars($_POST['projectName']);
   $_SESSION['projectlink'] = htmlspecialchars($_POST['projectLink']);
