@@ -1,5 +1,3 @@
-#Still may need some "Unique" tags candidate keys
-#Has not been run yet!!
 use sjl6333;
 
 SET FOREIGN_KEY_CHECKS = 0;
