@@ -29,7 +29,7 @@
           <label for="projectName" title="Create a name for your project.">
             Project Name
           </label>
-          <input type="text" id="projectName" name="projectName" 
+          <input type="text" id="projectname" name="projectname" 
                    pattern="^[a-zA-Z][a-z A-Z0-9_-]+$" required="required" />
         </fieldset>
        
@@ -37,7 +37,7 @@
           <label for="projectLink" title="Provide a link to your project file.">
             Project Link
           </label>
-          <input type="text" id="projectLink" name="projectLink" 
+          <input type="text" id="projectlink" name="projectlink" 
                    pattern="A-Za-z0-9!#$%&'()*+,\-./:;<=>?@_~" required="required" />
         </fieldset>
 

@@ -56,7 +56,7 @@
         $statement = $db->prepare( $query ); 
         $statement->execute();
         $result = $statement->fetchAll(); ?>
-      <form method="post" action="gallery.php">
+      
         <?php
         foreach( $result as $project ): 
           $link = 'http://bluesfest.no/site/bluesfest.no/design/layouts/images/no-image-placeholder.png?fh=250&fw=350'; 
@@ -73,9 +73,16 @@
                 <a href="<?=$project['ProjectLink']?>"><?=$project['ProjectName']?></a>
               </li>
               <li>Created by: <?=$project['CreatorUsername'] ?></li>
+              <li>
+                <form method="post" action="print.php">
+                  <input type="text" id="projectname" hidden="hidden" name="projectname" value="<?=$project['ProjectName']?>" />
+                  <input type="text" id="creatorusername" hidden="hidden" name="creatorusername" value="<?=$project['CreatorUsername']?>" />
+                  <button type="submit" name="submit">Print Project</button>
+                </form>
+              </li>
             </ul>
         <?php endforeach; ?>
-      </form>
+      
     </section>
     
     

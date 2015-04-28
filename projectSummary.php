@@ -20,8 +20,8 @@
     $error_msg = "Not a file";
     header('Location: createProject.php');
   endif;
-  $_SESSION['projectname'] = htmlspecialchars($_POST['projectName']);
-  $_SESSION['projectlink'] = htmlspecialchars($_POST['projectLink']);
+  $_SESSION['projectname'] = htmlspecialchars($_POST['projectname']);
+  $_SESSION['projectlink'] = htmlspecialchars($_POST['projectlink']);
   $_SESSION['picture'] = $target_file;
 
 ?>
@@ -42,8 +42,8 @@
       <h1>Print Summary</h1>
       
       <ul id="print-summary-list">
-        <li>Project Name: <?= $_SESSION['projectName'] ?></li>
-        <li>Project Link: <?= $_SESSION['projectLink'] ?></li>
+        <li>Project Name: <?= $_SESSION['projectname'] ?></li>
+        <li>Project Link: <?= $_SESSION['projectlink'] ?></li>
         <li>
           Project Picture: <img src="<?= $_SESSION['picture'] ?>" alt="Picture of: <?=$_SESSION['projectName']?>" width="250" height="200"/>
         </li>
