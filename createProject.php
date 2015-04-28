@@ -30,7 +30,7 @@
             Project Name
           </label>
           <input type="text" id="projectname" name="projectname" 
-                   pattern="^[a-zA-Z][a-z A-Z0-9_-]+$" required="required" />
+                   pattern="^[a-zA-Z0-9][a-z A-Z0-9_-]+$" required="required" />
         </fieldset>
        
        <fieldset>
