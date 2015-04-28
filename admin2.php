@@ -38,6 +38,7 @@ endif;
     <section class="maincontent">
       <h1>Completed/Rejected Projects</h1>
       <a href="admin.php">Goto the Printing Queue</a>
+      <a href="editPrinters.php">Add/Edit Printers</a>
       <table>
         <?php
           $lines = file( PRINTJOB_HEADERS_FILE );

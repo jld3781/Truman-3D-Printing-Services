@@ -44,6 +44,7 @@ endif;
     <section class="maincontent">
       <h1>Printing Queue</h1>
       <a href="admin2.php">Goto Completed/Rejected Jobs</a>
+      <a href="editPrinters.php">Add/Edit Printers</a>
       <table>
         <?php
           $lines = file( PRINTJOB_HEADERS_FILE );
