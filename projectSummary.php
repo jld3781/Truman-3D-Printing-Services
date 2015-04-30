@@ -20,6 +20,20 @@
     $error_msg = "Not a file";
     header('Location: createProject.php');
   endif;
+  require_once('dbconnection.php');
+  $sql = 'SELECT CreatorUsername
+          FROM PROJECT 
+          WHERE CreatorUsername=:username AND ProjectName=:projectname';
+  $statement = $db->prepare($sql);
+  $statement->bindParam(':username', $_SESSION['username']);
+  $statement->bindParam(':projectname',$_POST['projectname']);
+  $statement->execute();
+  $rows = $statement->fetchAll();
+        
+  if( !empty($rows) ):
+    $error_msg = "You've already made a project with that name";
+    header('Location: createProject.php');
+  endif;
   $_SESSION['projectname'] = htmlspecialchars($_POST['projectname']);
   $_SESSION['projectlink'] = htmlspecialchars($_POST['projectlink']);
   $_SESSION['picture'] = $target_file;
