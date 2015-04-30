@@ -82,7 +82,7 @@ endif;
               ?><td><a href="<?=$tuples['ProjectLink']?>"><?=$tuples['ProjectName']?></td>
                 <td>
                   <form action="admin.php" method="post">
-                    <select name="status">
+                    <select name="status" id="status">
                       <option value="<?=$tuples['Status']?>">
                           Current: <?=$tuples['Status']?></option>
                       <option value="Waiting">Waiting</option>
