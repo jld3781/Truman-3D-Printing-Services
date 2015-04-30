@@ -51,7 +51,7 @@ endif;
     ?>
     <section class="maincontent">
       <h1>Printer Menu</h1>
-      <a href="admin1.php">Goto the Printing Queue</a>
+      <a href="admin.php">Goto the Printing Queue</a>
       <a href="admin2.php">Goto Completed/Rejected Jobs</a>
       <table>
         <?php
