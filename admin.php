@@ -24,6 +24,11 @@ if(isset($_POST['status']) && isset($_POST['jobId'])):
   $statement->bindParam( ':status', $status, PDO::PARAM_STR );
   $statement->bindParam( ':jobId', $jobId, PDO::PARAM_STR );
   $statement->execute();
+  
+  $sql = "DELETE FROM PRINT_JOB
+          WHERE Status = 'Rejected'";
+  $statement = $db->prepare( $sql );
+  $statement->execute();
 endif;
 ?>
 <!DOCTYPE html>

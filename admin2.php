@@ -8,8 +8,8 @@ define('PRINTJOB_HEADERS_FILE', 'completedPrintsHeaders.txt' );
 
 //Handles a change in job Status
 if(isset($_POST['status']) && isset($_POST['jobId'])):
-  $jobId = $_POST['jobId'];
-  $status = $_POST['status'];
+  $jobId = htmlspecialchars($_POST['jobId']);
+  $status = htmlspecialchars($_POST['status']);
 
   $sql = "UPDATE PRINT_JOB
             SET Status = :status 
@@ -18,6 +18,8 @@ if(isset($_POST['status']) && isset($_POST['jobId'])):
   $statement->bindParam( ':status', $status, PDO::PARAM_STR );
   $statement->bindParam( ':jobId', $jobId, PDO::PARAM_STR );
   $statement->execute();
+  
+
 endif;
 ?>
 <!DOCTYPE html>
