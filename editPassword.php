@@ -101,6 +101,7 @@ endif;
         <a href="home.php">Back To Home Page</a>
       </p>
     </section>
+    <script src="inputValidation.js"></script>
   </body>
 </html>
 

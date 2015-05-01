@@ -139,9 +139,6 @@ endif;
     <?php else: ?>
         You are not <a href="login.php">logged in</a>.
     <?php endif; ?>
-      <p>
-        <a href="home.php">Back To Home Page</a>
-      </p>
     </section>
   </body>
 </html>
