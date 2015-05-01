@@ -159,7 +159,7 @@
                  pattern="[^ ]{5,}" required />
         </fieldset>
         
-        <button type="submit" name="submit">Submit</button>
+        <button type="submit" id="submit" name="submit">Submit</button>
       </form>
     
     <?php endif; ?>

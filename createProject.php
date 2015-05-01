@@ -34,7 +34,7 @@
         </fieldset>
        
        <fieldset>
-          <label for="projectLink" title="Provide a link to your project file.">
+          <label for="projectlink" title="Provide a link to your project file.">
             Project Link
           </label>
           <input type="text" id="projectlink" name="projectlink" 
@@ -48,10 +48,11 @@
           <input type="file" name="picture" id="picture">
         </fieldset>
         
-        <button type="submit" name="submit">Next</button>
+        <button type="submit" id="submit" name="submit">Next</button>
         
       </form>
     </section>
+    <script src="inputValidation.js"></script>
   </body>
 </html>
 <?php

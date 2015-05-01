@@ -131,7 +131,7 @@ endif;
             </p>
 
             <p>
-              <button type="submit" name="submit">Submit Changes</button>
+              <button type="submit" id="submit" name="submit">Submit Changes</button>
             </p>
           </fieldset>
         </form>
@@ -140,6 +140,7 @@ endif;
         You are not <a href="login.php">logged in</a>.
     <?php endif; ?>
     </section>
+    <script src="inputValidation.js"></script>
   </body>
 </html>
 

@@ -89,7 +89,7 @@ endif;
             </p>
 
             <p>
-              <button type="submit" name="submit">Submit Change</button>
+              <button type="submit" id="submit" name="submit">Submit Change</button>
             </p>
           </fieldset>
         </form>
@@ -97,9 +97,6 @@ endif;
     <?php else: ?>
         You are not <a href="login.php">logged in</a>.
     <?php endif; ?>
-      <p>
-        <a href="home.php">Back To Home Page</a>
-      </p>
     </section>
     <script src="inputValidation.js"></script>
   </body>
