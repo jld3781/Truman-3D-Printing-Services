@@ -19,6 +19,10 @@ if(isset($_POST['status']) && isset($_POST['jobId'])):
   $sql = "UPDATE PRINT_JOB
             SET Status = :status, StartTime = NOW() 
             WHERE JobId = :jobId";
+  else:
+  $sql = "UPDATE PRINT_JOB
+            SET Status = :status
+            WHERE JobId = :jobId";
   endif;
   $statement = $db->prepare( $sql );
   $statement->bindParam( ':status', $status, PDO::PARAM_STR );
@@ -87,7 +91,7 @@ endif;
               ?><td><a href="<?=$tuples['ProjectLink']?>"><?=$tuples['ProjectName']?></td>
                 <td>
                   <form action="admin.php" method="post">
-                    <select name="status" id="status">
+                    <select name="status" id="status<?=$count?>">
                       <option value="<?=$tuples['Status']?>">
                           Current: <?=$tuples['Status']?></option>
                       <option value="Waiting">Waiting</option>
