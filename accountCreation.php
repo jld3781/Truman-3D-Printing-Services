@@ -24,8 +24,8 @@
          preg_match( '%^[0-9]{10,11}$%', $_POST['tel'] ) &&
          isset($_POST['username']) &&
          preg_match( '%^\w+$%', $_POST['username'] ) &&
-         isset($_POST['password']) &&
-         preg_match( '%^\S{5,}$%', $_POST['password'] ) &&
+         isset($_POST['newpassword']) &&
+         preg_match( '%^\S{5,}$%', $_POST['newpassword'] ) &&
          isset($_POST['retypepassword']) ):
         
         $sql = 'SELECT Username
@@ -42,11 +42,11 @@
         endif;
         if(!$alreadytaken):
           if(preg_match( '|^\w+$|', $_POST['username']) &&
-             preg_match( '|^\S+$|', $_POST['password']) &&
+             preg_match( '|^\S+$|', $_POST['newpassword']) &&
              preg_match( '|^\S+$|', $_POST['retypepassword']) ):
-            if($_POST['password'] === $_POST['retypepassword']):
+            if($_POST['newpassword'] === $_POST['retypepassword']):
               #add new account and start session
-              $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+              $hashedpassword = password_hash($_POST['newpassword'], PASSWORD_DEFAULT);
               
               $sql = "INSERT INTO USER ( Email, Username, FirstName, LastName, 
                     PhoneNumber, StudentId, FacultyFlag, AdminFlag, PasswordHash) 
@@ -148,8 +148,8 @@
         </fieldset>
         
         <fieldset>
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" 
+          <label for="newpassword">Password</label>
+          <input type="password" id="newpassword" name="newpassword" 
                  placeholder="minimum length 5" pattern="[^ ]{5,}" required />
         </fieldset>
         
@@ -163,7 +163,7 @@
       </form>
     
     <?php endif; ?>
-    
+    <script src="inputValidation.js"></script>
     </section>
   </body>
 </html>
