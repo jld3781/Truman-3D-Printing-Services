@@ -1,1 +1,1 @@
-Job ID	Username	Project Name	Status	Weight	Color	Comments	Start Time	Stop Time
+Job ID	Username	Project Name	Status	Weight	Color	Comments	Time Submitted	Start Time	Stop Time

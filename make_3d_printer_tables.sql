@@ -1,4 +1,4 @@
-use jfs1744;
+use sjl6333;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
@@ -211,14 +211,14 @@ insert into CAN_PRINT(Color, Type, PrinterId) VALUES('Black', 'ABS', '6');
 insert into CAN_PRINT(Color, Type, PrinterId) VALUES('White', 'PLA', '6');
 insert into CAN_PRINT(Color, Type, PrinterId) VALUES('Gray', 'PLA', '6');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333', 'sjl6333', 'Arc Reactor', 'Waiting', '2015-03-22 10:34:09 PM', '2015-03-18 04:56:49 PM', '3.2', '3.2', '3.2', 'White', '8.34', 'Please fast please', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333', 'sjl6333', 'Arc Reactor', 'Waiting', '2015-03-18 04:56:49 PM', '3.2', '3.2', '3.2', 'White', '8.34', 'Please fast please', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'jld3781', 'jld3781', 'Star-Lord Elemental Gun', 'Waiting', '2015-03-24 11:45:14 AM', '2015-03-19 11:42:30 AM', '5.3', '3.5', '3.8', 'Blue', '15.64', 'Make as large as possible', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'jld3781', 'jld3781', 'Star-Lord Elemental Gun', 'Waiting', '2015-03-19 11:42:30 AM', '5.3', '3.5', '3.8', 'Blue', '15.64', 'Make as large as possible', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('2', 'jfs1744', 'jfs1744', 'Robots vs Wizards Chess Set', 'Waiting', '2015-04-16 02:55:06 AM', '2015-04-14 6:17:22 PM', '8.1', '8.1', '3.1', 'Gray', '12.05', 'No Comment', '.5', 'PLA');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('2', 'jfs1744', 'jfs1744', 'Robots vs Wizards Chess Set', 'Waiting', '2015-04-14 6:17:22 PM', '8.1', '8.1', '3.1', 'Gray', '12.05', 'No Comment', '.5', 'PLA');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1', 'jfs1744', 'Robots vs Wizards Chess Set', 'Printing', '2015-04-16 09:53:10 AM', '2015-04-15 10:54:56 AM', '8.1', '8.1', '3.1', 'White', '12.05', 'No Comment', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1', 'jfs1744', 'Robots vs Wizards Chess Set', 'Waiting', '2015-04-15 10:54:56 AM', '8.1', '8.1', '3.1', 'White', '12.05', 'No Comment', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, StopTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1', 'jfs1744', 'Robots vs Wizards Chess Set', 'Completed', '2015-04-16 09:53:10 AM', '2015-04-16 02:53:10 PM', '2015-04-15 08:05:00 PM', '8.1', '8.1', '3.1', 'White', '12.05', 'No Comment', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('4', 'jbeck1', 'jfs1744', 'Robots vs Wizards Chess Set', 'Waiting', '2015-04-15 08:05:00 PM', '8.1', '8.1', '3.1', 'White', '12.05', 'No Comment', '.5', 'ABS');
 
-insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, StartTime, StopTime, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333', 'sjl6333', 'Arc Reactor', 'Completed', '2015-04-19 10:34:09 AM', '2015-04-19 11:20:043 AM', '2015-04-18 09:33:26 PM', '3.5', '3.5', '3.5', 'White', '8.34', 'Please fast please', '.5', 'ABS');
+insert into PRINT_JOB(PrinterId, PrinterUsername, CreatorUsername, ProjectName, Status, SubmittedTime, Length, Width, Height, Color, ChargedPrice, Comment, Weight, MaterialType) VALUES('1', 'sjl6333', 'sjl6333', 'Arc Reactor', 'Waiting', '2015-04-18 09:33:26 PM', '3.5', '3.5', '3.5', 'White', '8.34', 'Please fast please', '.5', 'ABS');

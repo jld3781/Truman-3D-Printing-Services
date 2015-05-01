@@ -14,6 +14,7 @@ ini_set('display_errors', '1');
 
   <body>
     <?php include('nav.php');
+    $_SESSION['history'] = "Admin";
     if( isset( $_SESSION['loggedin'] ) && 
                $_SESSION['loggedin'] == true &&
                $_SESSION['aflag'] == 'T'):
@@ -34,7 +35,7 @@ ini_set('display_errors', '1');
       <p>Sorry, you must be an admin to access this page.</p>
     </section>
     <?php else:
-    $_SESSION['history'] = "Admin";
+    //$_SESSION['history'] = "Admin";
     header('Location: login.php');
     endif; ?>
     <script src="admin.js"></script>

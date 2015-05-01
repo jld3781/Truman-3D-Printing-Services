@@ -43,12 +43,21 @@ if( isset( $_SESSION['loggedin'] ) &&
   $firstLine = array_shift($lines);
   $words = explode( "\t", $firstLine ); ?>
   <tr>
-  <?php foreach($words as $word): ?>
+  <?php foreach($words as $word):?>
     <th><?=$word?></th>
   <?php endforeach;?>
   </tr>
   
   <?php //Pulls in all print jobs that aren't completed or rejected
+  if($_SESSION['history'] == 'Admin2'):
+  $query = "SELECT JobId, PrinterUsername, PJ.ProjectName, Status,
+            StartTime, StopTime, SubmittedTime, Length, Width, Height,
+            Color, MaterialType, Weight, ChargedPrice, Comment,
+            P.ProjectLink
+            FROM PRINT_JOB as PJ NATURAL JOIN PROJECT as P
+            WHERE Status = 'Rejected' OR Status = 'Completed'
+            ORDER BY StopTime";
+  else:
   $query = "SELECT JobId, PrinterUsername, PJ.ProjectName, Status,
             StartTime, StopTime, SubmittedTime, Length, Width, Height,
             Color, MaterialType, Weight, ChargedPrice, Comment,
@@ -56,6 +65,7 @@ if( isset( $_SESSION['loggedin'] ) &&
             FROM PRINT_JOB as PJ NATURAL JOIN PROJECT as P
             WHERE Status <> 'Rejected' AND Status <> 'Completed'
             ORDER BY SubmittedTime";
+  endif;
   $statement = $db->prepare( $query );
   $statement->execute();
   $result = $statement->fetchAll();
@@ -85,6 +95,8 @@ if( isset( $_SESSION['loggedin'] ) &&
     <td><?=$tuples['Color']?></td>
     <td><?=$tuples['Comment']?></td>
     <td><?=$tuples['SubmittedTime']?></td>
+    <td><?=$tuples['StartTime']?></td>
+    <td><?=$tuples['StopTime']?></td>
   </tr>
 <?php endforeach;
 endif; ?>
