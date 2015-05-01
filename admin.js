@@ -3,34 +3,29 @@
 "use strict";
 window.onload = function()
 {
-    var size = document.getElementsByName( 'status' ).length; //The array starts at 0
-    var status = "status";
-    for( var i = 0; i < size; i++)
-    {
-      var tempVal = status.concat(String(i)); //Example: "status2"
-      document.getElementById( tempVal ).onchange = updateStatus;
-    }
+  var statusSelectors = document.getElementsByClassName('status');
+  for( var i = 0; i < statusSelectors.length; i++ )
+  {
+    statusSelectors[i].onchange = updateStatus;
+  }
 }
-
-// constants
-var POSSIBLE_STATUS = 
-    [
-        "Waiting",
-        "Printing",
-        "Completed",
-        "On Hold",
-        "Rejected"
-    ];
 
 function updateStatus()
 {
-    var index = this.selectedIndex;
-    var newStatus = this.children[index].value;
-    var request = new XMLHttpRequest();
-
-    request.open( "GET", 
-                  "admin.php?newStatus=" + newStatus,
-                  false );
-    request.send( null );
-    document.getElementById("gallery").innerHTML = request.responseText;
+  var jobid = parseInt(this.id);
+  var index = this.selectedIndex;
+  var newstatus = this.children[index].value;
+  
+  var request = new XMLHttpRequest();
+  request.open( "GET", 
+                "getPrintJobs.php?status=" + newstatus + "&" + "jobId=" + jobid,
+                false );
+  request.send( null );
+  document.getElementById("jobsTable").innerHTML = request.responseText;
+  var statusSelectors = document.getElementsByClassName('status');
+  for( var i = 0; i < statusSelectors.length; i++ )
+  {
+    statusSelectors[i].onchange = updateStatus;
+  }
 }
+
