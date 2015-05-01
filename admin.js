@@ -1,4 +1,4 @@
-//Samuel Livingston
+//Samuel Livingston & Jimmy Sorsen
 
 "use strict";
 window.onload = function()
