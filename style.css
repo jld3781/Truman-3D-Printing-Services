@@ -194,7 +194,15 @@ td, th {
   border: solid 1px #ccc;
 }
 
-#signinbutton
-{
+#signinbutton {
   margin-top: -46px;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+.error-text{
+  color:red;
+  padding-top:0px;
+  margin-top:0px;
 }

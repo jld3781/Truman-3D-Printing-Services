@@ -61,9 +61,6 @@ $loggedin = isset($_SESSION['loggedin']);
         You need to <a href="login.php">log in</a> to view your profile.
       </p>
     <?php endif; ?>
-     <p>
-       <a href="home.php">Back To Home Page</a>
-     </p>
    </section>
   </body>
 </html>
